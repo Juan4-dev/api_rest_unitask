@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_horario');
             
             $table->string('tipo_horario', 30);
-            $table->timestamp('periodo')->nullable();
+            $table->timestamp('periodo_labor')->nullable();
             $table->string('nombre_turno', 20);
             $table->timestamp('fecha_turno')->nullable();
             $table->string('jornada', 30);
