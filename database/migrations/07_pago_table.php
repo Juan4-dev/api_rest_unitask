@@ -17,10 +17,8 @@ return new class extends Migration
             $table->string('estado', 40);
             $table->integer('cantidad');
             $table->unsignedBigInteger('numero_identificacion');
-            $table->unsignedBigInteger('id_labor');
 
             $table->foreign('numero_identificacion')->references('numero_identificacion')->on('empleados')->onDelete('cascade');
-            $table->foreign('id_labor')->references('id_labor')->on('servicios')->onDelete('cascade');
 
         });
     }
