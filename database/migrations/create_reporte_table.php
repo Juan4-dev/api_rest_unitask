@@ -22,9 +22,9 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('numero_identificacion')
-                  ->references('numero_identificacion')
-                  ->on('empleados')
-                  ->onDelete('cascade');
+            ->references('numero_identificacion')
+            ->on('empleados')
+            ->onDelete('cascade');
         });
     }
 
