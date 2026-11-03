@@ -25,7 +25,7 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('id_pago')->references('id_pagos')->on('pagos')->onDelete('cascade');
+            $table->foreign('id_pago')->references('id_pago')->on('pagos')->onDelete('cascade');
         });
     }
 
