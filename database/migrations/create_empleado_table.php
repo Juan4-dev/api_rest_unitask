@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('empleados', function (Blueprint $table) {
+            $table->unsignedBigInteger('numero_identificacion')->primary();
+            $table->string('nombre_empleado', 40);
+            $table->string('apellido_empleado', 40);
+            $table->integer('telefono_empleado');
+            $table->string('correo_empleado', 80);
+
+            $table->timestamps();
+            $table->softDeletes();
+
+        });
+    }
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('empleados');
+    }
+};
