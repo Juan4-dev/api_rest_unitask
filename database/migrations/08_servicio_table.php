@@ -20,13 +20,11 @@ return new class extends Migration
             $table->integer('cantidad_servicios')->default(0);
             
             $table->unsignedBigInteger('id_pago')->nullable();
-            $table->unsignedBigInteger('id_estadistica')->nullable();
+
 
             $table->softDeletes();
             $table->timestamps();
 
-           
-            $table->foreign('id_estadistica')->references('id_estadistica')->on('estadisticas')->onDelete('cascade');
             $table->foreign('id_pago')->references('id_pagos')->on('pagos')->onDelete('cascade');
         });
     }
