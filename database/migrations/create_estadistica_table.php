@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_reporte');
             $table->unsignedBigInteger('id_pago');
             $table->unsignedBigInteger('id_labor');
-            $table->timestamp('Periodo');
+            $table->timestamp('periodo_evualado');
             $table->timestamps();
             $table->softDeletes();
 
