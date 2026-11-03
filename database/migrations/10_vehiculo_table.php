@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('vehiculos', function (Blueprint $table) {
             $table->string("placa_vehiculo", 10)->primary();
             $table->string("tipo_vehiculo", 30);
-            $table->integer("id_labor");
-
+            $table->unsignedBigInteger("id_labor");
             $table->timestamps();
             $table->softDeletes();
 
