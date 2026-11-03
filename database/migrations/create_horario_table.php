@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('horarios', function (Blueprint $table) {
             $table->id('id_horario');
-            
             $table->string('tipo_horario', 30);
             $table->timestamp('periodo_labor')->nullable();
             $table->string('nombre_turno', 20);
