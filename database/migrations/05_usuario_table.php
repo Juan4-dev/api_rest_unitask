@@ -18,7 +18,7 @@ return new class extends Migration
             $table->softDeletes();
 
             
-            $table->foreign('id_rol')->references('id')->on('roles')->onDelete('cascade');
+            $table->foreign('id_rol')->references('id_rol')->on('roles')->onDelete('cascade');
             $table->foreign('numero_identificacion')->references('numero_identificacion')->on('empleados')->onDelete('cascade');
         });
     }
