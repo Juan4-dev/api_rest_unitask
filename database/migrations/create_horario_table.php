@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('horarios', function (Blueprint $table) {
             $table->id('id_horario');
             
-            $table->string('tipo_horario', 50);
+            $table->string('tipo_horario', 30);
             $table->timestamp('periodo')->nullable();
-            $table->string('nombre_turno', 50);
+            $table->string('nombre_turno', 20);
             $table->timestamp('fecha_turno')->nullable();
             $table->string('jornada', 30);
 

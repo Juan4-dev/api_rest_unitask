@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('servicios', function (Blueprint $table) {
             $table->id('id_labor');
             
-            $table->string('nombre_servicio', 100);
-            $table->string('labor_servicio', 100);
+            $table->string('nombre_servicio', 50);
+            $table->string('labor_servicio', 50);
             $table->timestamp('horas_labor')->nullable();
-            $table->integer('cantidad_servicioss')->default(0);
+            $table->integer('cantidad_servicios')->default(0);
             
-            $table->unsignedBigInteger('id_encuesta')->nullable();
             $table->unsignedBigInteger('id_pago')->nullable();
             $table->unsignedBigInteger('id_estadistica')->nullable();
 
