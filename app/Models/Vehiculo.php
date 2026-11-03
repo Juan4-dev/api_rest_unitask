@@ -12,7 +12,7 @@ class Vehiculo extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'vehiculo';
+    protected $table = 'vehiculos';
 
     // PK personalizada: placa (texto, no autoincrementable)
     protected $primaryKey = 'placa_vehiculo';
@@ -28,12 +28,12 @@ class Vehiculo extends Model
     
     public function servicio(): BelongsTo
     {
-        return $this->belongsTo(Servicio::class, 'id_labor', 'id_labor');
+        return $this->belongsTo(Servicio::class, 'id_labor');
     }
 
     
     public function clientes(): HasMany
     {
-        return $this->hasMany(Cliente::class, 'placa_vehiculo', 'placa_vehiculo');
+        return $this->hasMany(Cliente::class, 'placa_vehiculo');
     }
 }

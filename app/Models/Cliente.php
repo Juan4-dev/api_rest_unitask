@@ -11,7 +11,7 @@ class Cliente extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'cliente';
+    protected $table = 'clientes';
 
     // PK personalizada: cédula (entero, no autoincrementable)
     protected $primaryKey = 'cedula_cliente';
@@ -29,6 +29,6 @@ class Cliente extends Model
     
     public function vehiculo(): BelongsTo
     {
-        return $this->belongsTo(Vehiculo::class, 'placa_vehiculo', 'placa_vehiculo');
+        return $this->belongsTo(Vehiculo::class, 'placa_vehiculo');
     }
 }
