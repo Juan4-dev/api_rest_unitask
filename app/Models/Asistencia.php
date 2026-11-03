@@ -10,7 +10,7 @@ class Asistencia extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'asistencia';
+    protected $table = 'asistencias';
     protected $primaryKey = 'id_asistencia';
 
     protected $fillable = [
@@ -23,6 +23,6 @@ class Asistencia extends Model
 
     public function empleado()
     {
-        return $this->belongsTo(Empleado::class, 'numero_identificacion', 'numero_identificacion');
+        return $this->belongsTo(Empleado::class, 'numero_identificacion');
     }
 }

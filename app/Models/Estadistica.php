@@ -18,7 +18,7 @@ class Estadistica extends Model
         'id_reporte',
         'id_pago',
         'id_labor',
-        'Periodo',
+        'periodo_evaluado',
     ];
 
     
