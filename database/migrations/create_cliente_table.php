@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cliente', function (Blueprint $table) {
+        Schema::create('clientes', function (Blueprint $table) {
             $table->integer("cedula_cliente")->primary();
             $table->string("nombre_cliente", 30);
             $table->string("apellido_cliente", 30);
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign("placa_vehiculo")->references("placa_vehiculo")->on("vehiculo")->onDelete("cascade");
+            $table->foreign("placa_vehiculo")->references("placa_vehiculo")->on("vehiculos")->onDelete("cascade");
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cliente');
+        Schema::dropIfExists('clientes');
     }
 };
