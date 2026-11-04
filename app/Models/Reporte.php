@@ -12,7 +12,6 @@ class Reporte extends Model
 
     protected $table = 'reportes';
     
-    // Llave primaria personalizada definida en la migración
     protected $primaryKey = 'id_reporte';
 
     protected $fillable = [
@@ -21,11 +20,9 @@ class Reporte extends Model
         'numero_identificacion',
     ];
 
-    /**
-     * Relación: Un reporte pertenece a un empleado.
-     */
-    //public function empleado()
-    //{
-      //  return $this->belongsTo(Empleado::class, 'numero_identificacion', 'numero_identificacion');
-    //}
+    
+    public function empleado()
+    {
+      return $this->belongsTo(Empleado::class, 'numero_identificacion');
+    }
 }

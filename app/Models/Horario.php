@@ -12,7 +12,6 @@ class Horario extends Model
 
     protected $table = 'horarios';
     
-    // Llave primaria personalizada según la migración de horarios[cite: 4]
     protected $primaryKey = 'id_horario';
 
     protected $fillable = [
@@ -23,9 +22,5 @@ class Horario extends Model
         'jornada',
     ];
 
-    /**
-     * Relaciones con otras tablas (si aplica según tu diagrama ERD)
-     * Por ejemplo, si un horario tiene relación con empleados o asistencias, 
-     * puedes definirlas aquí usando hasMany o belongsTo.
-     */
+     
 }

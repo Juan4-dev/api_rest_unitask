@@ -22,9 +22,8 @@ class Servicio extends Model
         'id_pago'
     ];
 
-    // Relación con Pagos
-   // public function pago()
-    //{
-      //  return $this->belongsTo(Pago::class, 'id_pago', 'id_pagos');
-    //}
+   public function pago()
+    {
+        return $this->belongsTo(Pago::class, 'id_pago');
+    }
 }
