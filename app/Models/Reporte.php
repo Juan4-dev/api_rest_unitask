@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Resources\JsonApi\RelationResolver;
 
 class Reporte extends Model
 {
@@ -24,5 +25,10 @@ class Reporte extends Model
     public function empleado()
     {
       return $this->belongsTo(Empleado::class, 'numero_identificacion');
+    }
+
+    public function estadistica()
+    {
+        return $this->belongsTo(Estadistica::class, "id_estadistica");
     }
 }

@@ -26,4 +26,14 @@ class Servicio extends Model
     {
         return $this->belongsTo(Pago::class, 'id_pago');
     }
+
+    public function estadistica()
+    {
+        return $this->belongsTo(Estadistica::class, 'id_estadistica');
+    }
+
+    public function vehiculo()
+    {
+        return $this->belongsTo(Vehiculo::class, 'placa_vehiculo');
+    }
 }
