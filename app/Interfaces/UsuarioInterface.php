@@ -4,6 +4,10 @@ namespace App\Interfaces;
 
 interface UsuarioInterface extends BaseInterface
 {
-    public function findByUsername(string $usuario);
-    public function findByRole(int $rol);
+    public function findByUsuario(string $usuario);
+    public function findByIdentification(string $numeroIdentificacion);
+    public function getByRole(int $rol);
+    public function findByRol(int $rol);
+    public function assignRole(int $usuario, int $rol);
+    public function verifyCredentials(string $usuario, string $contraseña);
 }
