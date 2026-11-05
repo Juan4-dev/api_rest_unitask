@@ -2,6 +2,10 @@
 
 namespace App\Repositories;
 
+
+use App\Models\Usuario;
+use App\Interfaces\UsuarioInterface;
+
 class UsuarioRepository extends BaseRepository implements UsuarioInterface
 {
     public function __construct(Usuario $usuario)
@@ -22,6 +26,11 @@ class UsuarioRepository extends BaseRepository implements UsuarioInterface
     public function findByRol(int $rol)
     {
         return $this->model->where("rol", $rol)->get();
+    }
+
+    public function assignRole(int $usuario, int $rol)
+    {
+        return $this->model->where("id", $usuario)->update(["rol" => $rol]);
     }
 
     public function verifyCredentials(string $usuario, string $contraseña)

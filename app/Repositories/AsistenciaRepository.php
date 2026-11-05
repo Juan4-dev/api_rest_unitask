@@ -17,7 +17,7 @@ class AsistenciaRepository extends BaseRepository implements AsistenciaInterface
     {
         return $this->model->where("fecha", $fecha)->get();
     }
-    
+
     public function findByDateRange(string $fechaInicio, string $fechaFin)
     {
         return $this->model->whereBetween("fecha", [$fechaInicio, $fechaFin])->get();
@@ -38,13 +38,12 @@ class AsistenciaRepository extends BaseRepository implements AsistenciaInterface
         return $this->model->create($asistencia);
     }
    
-    public function registerExit(int $asistencia)
+    public function registerExit(int $asistencia, Carbon $horaSalida)
     {
-    $registroAsistencia = $this->model->find($asistencia);
-    if ($registroAsistencia) {
-        $registroAsistencia->update([
-            'hora_salida' => Carbon::now()
-        ]);
+    $registroAsistencia=$this->model->find($asistencia);
+    if ($registroAsistencia) 
+    {
+        $registroAsistencia->update(["hora_salida"=>$horaSalida]);
         return $registroAsistencia;
     }
     return null;
