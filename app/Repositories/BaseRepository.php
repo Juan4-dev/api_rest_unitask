@@ -1,24 +1,26 @@
 <?php
 
 namespace App\Repositories;
+
 use App\Interfaces\BaseInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class BaseRepository implements BaseInterface
 {
-    private Model $model;
+    protected Model $model;
 
     public function __construct(Model $model)
     {
         $this->model = $model;
     }
 
-    public function getAll(){
+    public function getAll()
+    {
         return $this->model->all();  
     }
 
-
-    public function getById(int $id){
+    public function getById($id)
+    {
         $registro = $this->model->find($id);  
 
         if(!$registro)
@@ -34,8 +36,7 @@ class BaseRepository implements BaseInterface
         return $this->model->create($data); 
     }
 
-
-    public function update(int $id, array $data)
+    public function update($id, array $data)
     {
         $registro = $this->model->find($id);
 
@@ -49,7 +50,7 @@ class BaseRepository implements BaseInterface
         return $registro->fresh();
     }
 
-    public function delete(int $id)
+    public function delete($id)
     {
         $registro = $this->model->find($id);
         if(!$registro)
@@ -58,5 +59,4 @@ class BaseRepository implements BaseInterface
         }
         return $registro->delete();
     }
-
 }

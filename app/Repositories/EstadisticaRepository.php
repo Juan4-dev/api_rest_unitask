@@ -23,8 +23,8 @@ class EstadisticaRepository extends BaseRepository implements EstadisticaInterfa
     public function findByChartAndPeriod(string $tipoGrafico, string $fechaInicio, string $fechaFin)
     {
         return $this->model->where("tipo_grafico", $tipoGrafico)
-                           ->whereBetween("fecha", [$fechaInicio, $fechaFin])
-                           ->get();
+        ->whereBetween("fecha", [$fechaInicio, $fechaFin])
+        ->get();
     }
 
     public function findByReport(int $reporte)
