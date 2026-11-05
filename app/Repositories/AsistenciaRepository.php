@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Repositories;
-
 use App\Models\Asistencia;
-use App\Interfaces\AsistenciaInterface;
 use Carbon\Carbon;
 
 class AsistenciaRepository extends BaseRepository implements AsistenciaInterface
