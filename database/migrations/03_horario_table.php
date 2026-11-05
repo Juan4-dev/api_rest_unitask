@@ -21,6 +21,11 @@ return new class extends Migration
 
             $table->softDeletes();
             $table->timestamps();
+
+             $table->unsignedBigInteger('numero_identificacion')->nullable();
+            $table->foreign('numero_identificacion')->references('numero_identificacion')->on('empleados')->onDelete('cascade');
+
+
         });
     }
 
