@@ -16,7 +16,7 @@ class Horario extends Model
 
     protected $fillable = [
         'tipo_horario',
-        'periodo',
+        'periodo_labor',
         'nombre_turno',
         'fecha_turno',
         'jornada',
