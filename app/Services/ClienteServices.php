@@ -38,7 +38,7 @@ class ClienteServices
         return $this->clienteRepository->delete($id);
     }
 
-    // Los servicios de cliente
+    
     public function findByCedula(int $cedulaCliente)
     {
         return $this->clienteRepository->findByCedula($cedulaCliente);

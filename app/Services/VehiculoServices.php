@@ -18,7 +18,7 @@ class VehiculoServices
         return $this->vehiculoRepository->getAll();
     }
 
-    // La PK de vehiculo es la placa (string)
+    
     public function getById(int|string $id)
     {
         return $this->vehiculoRepository->getById($id);
@@ -39,7 +39,7 @@ class VehiculoServices
         return $this->vehiculoRepository->delete($id);
     }
 
-    // Los servicios de vehiculo
+    
     public function findByPlaca(string $placaVehiculo)
     {
         return $this->vehiculoRepository->findByPlaca($placaVehiculo);
