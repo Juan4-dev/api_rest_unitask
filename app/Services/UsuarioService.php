@@ -18,9 +18,9 @@ class UsuarioService
        return $this->usuarioRepository->getAll();  
     }
 
-    public function getByid(int $id)
+    public function getById(int $id)
     {
-        return $this->usuarioRepository->getByid($id); 
+        return $this->usuarioRepository->getById($id); 
     }
 
     public function create(array $data)
