@@ -15,7 +15,7 @@ class UsuarioService
     
     public function getAll()
     {
-       return $this->usuarioRepository->getAll();  
+        return $this->usuarioRepository->getAll();  
     }
 
     public function getById(int $id)
@@ -39,7 +39,7 @@ class UsuarioService
 
     public function delete(int $id)
     {
-       return $this->usuarioRepository->delete($id);
+        return $this->usuarioRepository->delete($id);
     }
 
     public function findByUsuario(string $usuario)
