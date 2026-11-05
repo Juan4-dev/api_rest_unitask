@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Interfaces\VehiculoInterface;
 
-class VehiculoServices
+class VehiculoService
 {
     protected VehiculoInterface $vehiculoRepository;
 

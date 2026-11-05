@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Interfaces\ClienteInterface;
 
-class ClienteServices
+class ClienteService
 {
     protected ClienteInterface $clienteRepository;
 
