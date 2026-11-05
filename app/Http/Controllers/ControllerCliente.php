@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\ClienteService;
 use App\Http\Requests\ClienteRequest;
 
-class ClienteController extends Controller
+class ControllerCliente extends Controller
 {
     public function __construct(private ClienteService $clienteService)
     {
