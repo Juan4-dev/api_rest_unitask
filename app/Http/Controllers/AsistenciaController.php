@@ -16,7 +16,7 @@ class AsistenciaController extends Controller
         $registros = $this->asistenciaService->getAll();
 
         return response()->json([
-            'message' => "Se listaron las asistencias correctamente",
+            'message' => 'Se listaron las asistencias correctamente',
             'data' => $registros
         ], 200);
     }
@@ -82,7 +82,7 @@ class AsistenciaController extends Controller
         ], 200);
     }
 
-    public function findByDate(AsistenciaRequest $rango)
+    public function findByDate(AsistenciaRequest $request)
     {
         $data = $this->asistenciaService->findByDate($request->input('fecha'));
 
@@ -92,11 +92,11 @@ class AsistenciaController extends Controller
         ], 200);
     }
 
-    public function findByDateRange(AsistenciaRequest $fechas)
+    public function findByDateRange(AsistenciaRequest $request)
     {
         $data = $this->asistenciaService->findByDateRange(
-            $request->fechas('fecha_inicio'), 
-            $request->fechas('fecha_fin')
+            $request->input('fecha_inicio'), 
+            $request->input('fecha_fin')
         );
 
         return response()->json([
@@ -105,7 +105,6 @@ class AsistenciaController extends Controller
         ], 200);
     }
 
-    // Buscar por identidad
     public function findByIdentity(string $numeroIdentificacion)
     {
         $data = $this->asistenciaService->findByIdentity($numeroIdentificacion);
@@ -116,7 +115,6 @@ class AsistenciaController extends Controller
         ], 200);
     }
 
-    // Buscar por estado de validacion
     public function findByStatus(string $estadoValidacion)
     {
         $data = $this->asistenciaService->findByStatus($estadoValidacion);
@@ -127,7 +125,6 @@ class AsistenciaController extends Controller
         ], 200);
     }
 
-    
     public function registerEntry(AsistenciaRequest $register)
     {
         $registerEntry = $this->asistenciaService->registerEntry($register->validated());

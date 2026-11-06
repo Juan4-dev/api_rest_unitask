@@ -82,7 +82,7 @@ class EstadisticaController extends Controller
         ], 200);
     }
 
-public function findByChartType(string $tipoGrafico)
+    public function findByChartType(string $tipoGrafico)
     {
         $listado = $this->estadisticaService->findByChartType($tipoGrafico);
         return response()->json([
@@ -91,15 +91,15 @@ public function findByChartType(string $tipoGrafico)
         ], 200);
     }
 
-    public function getByDateRange(EstadisticaRequest $fecha)
+    public function getByDateRange(EstadisticaRequest $request)
     {
-        $fecha = $this->estadisticaService->getByDateRange(
-            $fecha->input('fecha_inicio'), 
+        $data = $this->estadisticaService->getByDateRange(
+            $request->input('fecha_inicio'), 
             $request->input('fecha_fin')
         );
         return response()->json([
             'message' => 'Se listo correctamente por rango de fechas',
-            'fecha' => $fecha
+            'data' => $data
         ], 200);
     }
 
