@@ -4,5 +4,5 @@ namespace App\Interfaces;
 
 interface RolInterface extends BaseInterface
 {
-    public function findByNameRol(int $nombreRol);
+    public function findByNameRol(string $nombreRol);
 }
