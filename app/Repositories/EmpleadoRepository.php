@@ -30,9 +30,4 @@ class EmpleadoRepository extends BaseRepository implements EmpleadoInterface
     {
         return $this->model->where("telefono_empleado", $telefonoEmpleado)->get();
     }
-
-    public function findByCorreoEmpleado(string $correoEmpleado)
-    {
-        return $this->model->where("correo_empleado", $correoEmpleado)->get();
-    }
 }

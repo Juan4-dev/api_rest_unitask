@@ -54,9 +54,4 @@ class EmpleadoService
     {
         return $this->empleadoRepository->findByTelefonoEmpleado($telefonoEmpleado);
     }
-
-    public function findByCorreoEmpleado(string $correoEmpleado)
-    {
-        return $this->empleadoRepository->findByCorreoEmpleado($correoEmpleado);
-    }
 }
