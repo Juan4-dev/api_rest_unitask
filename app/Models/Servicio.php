@@ -21,8 +21,8 @@ class Servicio extends Model
         'cantidad_servicios',
         'id_pago'
     ];
-
-   public function pago()
+    
+    public function pago()
     {
         return $this->belongsTo(Pago::class, 'id_pago');
     }
