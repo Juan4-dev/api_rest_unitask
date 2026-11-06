@@ -14,7 +14,6 @@ class Vehiculo extends Model
 
     protected $table = 'vehiculos';
 
-    // PK personalizada: placa (texto, no autoincrementable)
     protected $primaryKey = 'placa_vehiculo';
     public $incrementing = false;
     protected $keyType = 'string';
