@@ -4,14 +4,12 @@ namespace App\Repositories;
 
 use App\Interfaces\HorarioInterface;
 use App\Models\Horario;
-use Illuminate\Database\Eloquent\Model;
-use Override;
 
 class HorarioRepository extends BaseRepository implements HorarioInterface
 {
 
 
- public function __construct(Model $horario)
+ public function __construct(horario $horario)
  {
  parent::__construct($horario);
  }
