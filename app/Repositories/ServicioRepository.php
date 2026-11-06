@@ -7,9 +7,9 @@ use App\Models\Servicio;
 
 class ServicioRepository extends BaseRepository implements ServicioInterface
 {
-    public function __construct(Servicio $model)
+    public function __construct(Servicio $servicio)
     {
-        parent::__construct($model);
+        parent::__construct($servicio);
     }
 
     public function findByName(string $nombre_servicio)

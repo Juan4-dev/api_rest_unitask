@@ -11,9 +11,9 @@ class HorarioRepository extends BaseRepository implements HorarioInterface
 {
 
 
- public function __construct(Model $model)
+ public function __construct(Model $horario)
  {
- parent::__construct($model);
+ parent::__construct($horario);
  }
  
   public function findByHoraryType(string $tipo_horario)

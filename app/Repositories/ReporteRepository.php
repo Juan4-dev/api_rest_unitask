@@ -7,9 +7,9 @@ use App\Models\Reporte;
 
 class ReporteRepository extends BaseRepository implements ReporteInterface
 {
-    public function __construct(Reporte $model)
+    public function __construct(Reporte $reporte)
     {
-        parent::__construct($model);
+        parent::__construct($reporte);
     }
 
     public function findByFailureType(string $tipo_fallas)
