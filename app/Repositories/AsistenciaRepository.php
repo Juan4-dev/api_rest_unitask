@@ -35,7 +35,7 @@ class AsistenciaRepository extends BaseRepository implements AsistenciaInterface
     {
         return $this->model->create($asistencia);
     }
-   
+    
     public function registerExit(int $asistencia, Carbon $horaSalida)
     {
     $registroAsistencia=$this->model->find($asistencia);
