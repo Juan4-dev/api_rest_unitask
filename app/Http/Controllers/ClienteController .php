@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Services\ClienteService;
-use App\Http\Requests\ClienteRequest;
+use App\Http\Requests\RequestCliente;
 
-class ControllerCliente extends Controller
+class ClienteController extends Controller
 {
     public function __construct(private ClienteService $clienteService)
     {
@@ -14,7 +14,7 @@ class ControllerCliente extends Controller
     // Traer todos los registros
     public function index()
     {
-        $registros = $this->clienteService->getAll();
+        $registros = $this->clienteServices->getAll();
 
         return response()->json([
             'message' => 'Se listaron los clientes correctamente',

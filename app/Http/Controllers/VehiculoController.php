@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\VehiculoService;
 use App\Http\Requests\VehiculoRequest;
 
-class ControllerVehiculo extends Controller
+class VehiculoController extends Controller
 {
     public function __construct(private VehiculoService $vehiculoService)
     {
