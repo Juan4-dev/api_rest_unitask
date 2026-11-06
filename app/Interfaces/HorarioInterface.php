@@ -5,6 +5,8 @@ namespace App\Interfaces;
 interface HorarioInterface extends BaseInterface
 {
 
+public function findById(int $id);
+
 public function findByHoraryType(string $tipo_horario);
 
 public function getByTimeJob(int $periodo_labor);

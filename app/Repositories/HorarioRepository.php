@@ -8,6 +8,10 @@ use App\Models\Horario;
 class HorarioRepository extends BaseRepository implements HorarioInterface
 {
 
+public function findById(int $id)
+{
+    return $this->model->find($id);
+}
 
  public function __construct(horario $horario)
  {
