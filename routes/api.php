@@ -61,26 +61,5 @@ Route::prefix('v1')->group(function () {
     Route::post('usuario/verificar/{verificar}', [UsuarioController::class, 'verifyCredentials']);
     Route::apiResource('usuario', UsuarioController::class);
 
-    //Servicio
-
-    Route::post('servicio/buscar/nombre', [ServicioController::class, 'findByName']);
-    Route::post('servicio/buscar/labor', [ServicioController::class, 'findByTask']);
-    Route::get('servicio/buscar/pago/{idPago}', [ServicioController::class, 'findByPay']);
-    Route::post('servicio/buscar/horas', [ServicioController::class, 'findByHours']);
-    Route::post('servicio/buscar/cantidad', [ServicioController::class, 'findByQuantity']);
-
-    Route::apiResource('servicio', ServicioController::class);
-
-    //Horario
-
-    Route::apiResource('horarios', HorarioController::class);
-
-    //Reporte 
-
-    Route::get('reportes/tipo', [ReporteController::class, 'findByType']);
-    Route::get('reportes/cantidad', [ReporteController::class, 'findByCount']);
-    Route::get('reportes/empleado/{numeroIdentificacion}', [ReporteController::class, 'findByEmployee']);
-
-    Route::apiResource('reportes', ReporteController::class);
-
+    
 });
