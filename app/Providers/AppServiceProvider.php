@@ -1,19 +1,20 @@
 <?php
- 
+
 namespace App\Providers;
- 
+
 use Illuminate\Support\ServiceProvider;
+
 use App\Interfaces\VehiculoInterface;
 use App\Repositories\VehiculoRepository;
 use App\Interfaces\ClienteInterface;
 use App\Repositories\ClienteRepository;
-use App\Interfaces\AsistenciaInterface;
-use App\Repositories\AsistenciaRepository;
-use App\Interfaces\EstadisticaInterface;
-use App\Repositories\EstadisticaRepository;
-use App\Interfaces\UsuarioInterface;
-use App\Repositories\UsuarioRepository;
- 
+use App\Interfaces\EmpleadoInterface;
+use App\Repositories\EmpleadoRepository;
+use App\Repositories\PagoRepository;
+use App\Repositories\PagoInterface;
+use App\Repositories\RolRepository;
+use App\Repositories\RolInterface;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,11 +24,11 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(VehiculoInterface::class, VehiculoRepository::class);
         $this->app->bind(ClienteInterface::class, ClienteRepository::class);
-        $this->app->bind(AsistenciaInterface::class, AsistenciaRepository::class);
-        $this->app->bind(EstadisticaInterface::class, EstadisticaRepository::class);
-        $this->app->bind(UsuarioInterface::class, UsuarioRepository::class);  
+
+        $this->app->bind(EmpleadoInterface::class, EmpleadoRepository::class);
+        $this->app->bind(PagoInterface::class, PagoRepository::class);
+        $this->app->bind(RolInterface::class, RolRepository::class);
     }
- 
     /**
      * Bootstrap any application services.
      */

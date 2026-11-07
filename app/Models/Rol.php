@@ -10,7 +10,7 @@ class Rol extends Model
 {
     protected $table = "roles";
     protected $fillabe=[
-        'total_pago'
+        'nombre_rol'
     ];
 
     public function cliente(){
