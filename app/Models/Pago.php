@@ -11,7 +11,7 @@ class Pago extends Model
 {
     protected $table = "pagos";
     protected $fillabe=[
-        "nombre_rol"
+        "total_pago"
     ];
 
     public function usuario(){
