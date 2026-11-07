@@ -34,6 +34,13 @@ Route::prefix('v1')->group(function () {
 
     Route::apiResource('pago', PagoController::class);
 
+    //Servicio
+
+    Route::post('servicio/buscar/nombre', [ServicioController::class, 'findByName']);
+    Route::post('servicio/buscar/labor', [ServicioController::class, 'findByTask']);
+    Route::get('servicio/buscar/pago/{idPago}', [ServicioController::class, 'findByPay']);
+    Route::post('servicio/buscar/horas', [ServicioController::class, 'findByHours']);
+    Route::post('servicio/buscar/cantidad', [ServicioController::class, 'findByQuantity']);
     // Asistencia
 
     Route::get('asistencia/fecha/{fecha}', [AsistenciaController::class, 'findByDate']);
@@ -61,4 +68,21 @@ Route::prefix('v1')->group(function () {
     Route::post('usuario/verificar/{verificar}', [UsuarioController::class, 'verifyCredentials']);
     Route::apiResource('usuario', UsuarioController::class);
 
+    //Horario
+    Route::post('horario/buscar/tipo', [HorarioController::class, 'findByType']);
+    Route::get('horario/buscar/empleado/{numero_identificacion}',[HorarioController::class, 'findByEmployee']);
+
+    Route::apiResource('horario', HorarioController::class);
+
+    //Reporte   
+
+    Route::post('reporte/buscar/tipo', [ReporteController::class, 'findByType']);
+    Route::post('reporte/buscar/cantidad', [ReporteController::class, 'findByCount']);
+    Route::get('reporte/buscar/empleado/{numeroIdentificacion}', [ReporteController::class, 'findByEmployee']);
+
+    Route::apiResource('reporte', ReporteController::class);
+
+   
+
+    
 });

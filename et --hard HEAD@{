@@ -1,0 +1,74 @@
+[33m529a37b[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/feature/providers[m[33m)[m HEAD@{0}: pull origin feature/providers --rebase (start): checkout 529a37b20d1943519ba31714296c9de6400b204b
+[33ma23fc27[m[33m ([m[1;32mfeature/providers[m[33m)[m HEAD@{1}: commit: Apis
+[33mbe595f7[m HEAD@{2}: checkout: moving from develop to feature/providers
+[33ma701b90[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m HEAD@{3}: checkout: moving from feature/providers to develop
+[33mbe595f7[m HEAD@{4}: checkout: moving from develop to feature/providers
+[33ma701b90[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m HEAD@{5}: pull: Fast-forward
+[33m02cb480[m HEAD@{6}: checkout: moving from feature/providers to develop
+[33mbe595f7[m HEAD@{7}: commit: Providersfiles
+[33m985bff2[m HEAD@{8}: checkout: moving from develop to feature/providers
+[33m02cb480[m HEAD@{9}: pull: Fast-forward
+[33m985bff2[m HEAD@{10}: checkout: moving from feature/providers to develop
+[33m985bff2[m HEAD@{11}: checkout: moving from develop to feature/providers
+[33m985bff2[m HEAD@{12}: pull: Fast-forward
+[33m3e707c9[m HEAD@{13}: pull: Fast-forward
+[33mde1a7ab[m HEAD@{14}: checkout: moving from feature/controllerstables to develop
+[33m0952382[m[33m ([m[1;31morigin/feature/controllerstables[m[33m)[m HEAD@{15}: commit: Filecontrollers
+[33m257f2f2[m HEAD@{16}: commit: ControladoresRHS
+[33m50084cd[m HEAD@{17}: commit: controllersSHR
+[33mde1a7ab[m HEAD@{18}: checkout: moving from develop to feature/controllerstables
+[33mde1a7ab[m HEAD@{19}: pull: Fast-forward
+[33m9eebd9b[m HEAD@{20}: pull: Fast-forward
+[33m90b7764[m HEAD@{21}: checkout: moving from feature/request_hsr to develop
+[33m69843aa[m[33m ([m[1;31morigin/feature/request_hsr[m[33m)[m HEAD@{22}: commit: RequestDiego
+[33m90b7764[m HEAD@{23}: checkout: moving from develop to feature/request_hsr
+[33m90b7764[m HEAD@{24}: pull: Fast-forward
+[33mfa40849[m HEAD@{25}: checkout: moving from feature/services_diego to develop
+[33md853059[m[33m ([m[1;31morigin/feature/services_diego[m[33m)[m HEAD@{26}: commit: ServiciosDiego
+[33mfa40849[m HEAD@{27}: checkout: moving from develop to feature/services_diego
+[33mfa40849[m HEAD@{28}: checkout: moving from fb514c81af326a5f21e8005ea70494b60bfc5b52 to develop
+[33mfb514c8[m[33m ([m[1;31morigin/feature/repositories_diego[m[33m)[m HEAD@{29}: checkout: moving from develop to feature/repositories_diego
+[33mfa40849[m HEAD@{30}: checkout: moving from fb514c81af326a5f21e8005ea70494b60bfc5b52 to develop
+[33mfb514c8[m[33m ([m[1;31morigin/feature/repositories_diego[m[33m)[m HEAD@{31}: checkout: moving from develop to feature/repositories_diego
+[33mfa40849[m HEAD@{32}: pull: Fast-forward
+[33md233055[m HEAD@{33}: checkout: moving from feature/repositories_diego to develop
+[33mfb514c8[m[33m ([m[1;31morigin/feature/repositories_diego[m[33m)[m HEAD@{34}: commit: ajustes en el model
+[33ma374695[m HEAD@{35}: commit: Ajustes al modelo
+[33m9024ea3[m HEAD@{36}: commit: RepositoriesDiego
+[33md233055[m HEAD@{37}: checkout: moving from develop to feature/repositories_diego
+[33md233055[m HEAD@{38}: pull: Fast-forward
+[33mdc1e6f2[m HEAD@{39}: pull: Fast-forward
+[33m5f91f76[m HEAD@{40}: checkout: moving from feature/interfaces_srh to develop
+[33mad5f52b[m[33m ([m[1;31morigin/feature/interfaces_srh[m[33m)[m HEAD@{41}: commit: EnvioModelosDiego
+[33m5f91f76[m HEAD@{42}: checkout: moving from develop to feature/interfaces_srh
+[33m5f91f76[m HEAD@{43}: checkout: moving from feature/interfaces_srh to develop
+[33m5f91f76[m HEAD@{44}: checkout: moving from develop to feature/interfaces_srh
+[33m5f91f76[m HEAD@{45}: pull: Fast-forward
+[33mfd68f85[m HEAD@{46}: pull: Fast-forward
+[33m4893c04[m HEAD@{47}: pull: Fast-forward
+[33m3db67e2[m HEAD@{48}: checkout: moving from feature/model_Diego to develop
+[33ma692402[m[33m ([m[1;31morigin/feature/model_Diego[m[33m)[m HEAD@{49}: commit: Ajustesmodelo
+[33m6dfe909[m HEAD@{50}: commit: CambioModelos
+[33mdae7196[m HEAD@{51}: commit: CambiosModelo
+[33m3db67e2[m HEAD@{52}: checkout: moving from develop to feature/model_Diego
+[33m3db67e2[m HEAD@{53}: pull: Fast-forward
+[33md85c458[m HEAD@{54}: pull: Fast-forward
+[33m6ed0091[m HEAD@{55}: pull: Fast-forward
+[33mcc6724e[m HEAD@{56}: pull: Fast-forward
+[33m23c7e12[m HEAD@{57}: pull: Fast-forward
+[33mbd9a86e[m HEAD@{58}: pull: Fast-forward
+[33m5a14f35[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{59}: checkout: moving from feature/crud-tareas to develop
+[33m104a832[m[33m ([m[1;31morigin/feature/crud-tareas[m[33m)[m HEAD@{60}: commit: AjustesMigracionHorario
+[33m40d19e4[m HEAD@{61}: commit: AjustesMigracionesDiego
+[33mf966225[m HEAD@{62}: commit: MigracionServicios
+[33mc5545bd[m HEAD@{63}: checkout: moving from develop to feature/crud-tareas
+[33m5a14f35[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{64}: checkout: moving from feature/crud-tareas to develop
+[33mc5545bd[m HEAD@{65}: commit: cambiosFinalesMigraciones
+[33md85b836[m HEAD@{66}: commit: feature/servicios
+[33mc05d283[m HEAD@{67}: commit: feature/migraciones_servicio
+[33m7da7c0c[m HEAD@{68}: commit: cambiosPrueba
+[33m5a14f35[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{69}: checkout: moving from develop to feature/crud-tareas
+[33m5a14f35[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{70}: checkout: moving from feature/crud-tareas to develop
+[33m5a14f35[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{71}: checkout: moving from main to feature/crud-tareas
+[33m5a14f35[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{72}: checkout: moving from main to main
+[33m5a14f35[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{73}: clone: from https://github.com/Juan4-dev/api_rest_unitask.git
