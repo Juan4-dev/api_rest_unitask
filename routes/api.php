@@ -43,6 +43,9 @@ Route::prefix('v1')->group(function () {
     Route::get('servicio/buscar/pago/{idPago}', [ServicioController::class, 'findByPay']);
     Route::post('servicio/buscar/horas', [ServicioController::class, 'findByHours']);
     Route::post('servicio/buscar/cantidad', [ServicioController::class, 'findByQuantity']);
+
+    Route::apiResource('servicio', ServicioController::class);
+
     // Asistencia
 
     Route::get('asistencia/fecha/{fecha}', [AsistenciaController::class, 'findByDate']);
