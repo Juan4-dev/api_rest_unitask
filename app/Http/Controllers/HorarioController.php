@@ -24,7 +24,7 @@ class HorarioController extends Controller
     public function store(HorarioRequest $request)
     {
         $registroHorario = $this->horarioService->createHorario($request->validated());
-             
+        
         return response()->json([
             'message' => 'El horario se creó correctamente',
             'datosRegistrados' => $registroHorario

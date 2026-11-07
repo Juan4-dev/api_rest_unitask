@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Pago;
+use App\Interfaces\PagoInterface;
 
 class PagoRepository extends BaseRepository implements PagoInterface
 {

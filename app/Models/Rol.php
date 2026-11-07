@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Rol extends Model
 {
     protected $table = "roles";
-    protected $fillabe=[
+    protected $primaryKey = 'id_rol';
+    protected $fillable=[
         'nombre_rol'
     ];
 
