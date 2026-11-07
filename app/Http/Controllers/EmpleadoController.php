@@ -28,7 +28,7 @@ class EmpleadoController extends Controller
             'datosRegistrados' => $registroEmpleado
         ], 201);
     }
-    public function show(int $numeroIdentificacion)
+    public function show(int $numeroIdentificacion) //x
     {
         $registro = $this->empleadoService->getById($numeroIdentificacion);
 
