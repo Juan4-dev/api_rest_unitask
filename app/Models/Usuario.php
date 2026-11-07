@@ -17,6 +17,7 @@ class Usuario extends Model
         'usuario',
         'contraseña',
         'id_rol',
+        'comerse_esta',
         'numero_identificacion',
     ];
     
