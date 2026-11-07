@@ -61,5 +61,4 @@ Route::prefix('v1')->group(function () {
     Route::post('usuario/verificar/{verificar}', [UsuarioController::class, 'verifyCredentials']);
     Route::apiResource('usuario', UsuarioController::class);
 
-    
 });

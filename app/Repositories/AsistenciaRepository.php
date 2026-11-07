@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 use App\Models\Asistencia;
+use App\Interfaces\AsistenciaInterface;
 use Carbon\Carbon;
 
 class AsistenciaRepository extends BaseRepository implements AsistenciaInterface
@@ -36,14 +37,14 @@ class AsistenciaRepository extends BaseRepository implements AsistenciaInterface
         return $this->model->create($asistencia);
     }
     
-    public function registerExit(int $asistencia, Carbon $horaSalida)
+    public function registerExit(int $asistencia, string $horaSalida)
     {
-    $registroAsistencia=$this->model->find($asistencia);
-    if ($registroAsistencia) 
-    {
-        $registroAsistencia->update(["hora_salida"=>$horaSalida]);
-        return $registroAsistencia;
-    }
-    return null;
+        $registroAsistencia = $this->model->find($asistencia);
+        if ($registroAsistencia) 
+        {
+            $registroAsistencia->update(["hora_salida" => $horaSalida]);
+            return $registroAsistencia;
+        }
+        return null;
     }
 }
