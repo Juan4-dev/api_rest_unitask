@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Rol extends Model
 {
     protected $table = "roles";
-    protected $fillabe=[
-        'total_pago'
+    protected $primaryKey = 'id_rol';
+    protected $fillable=[
+        'nombre_rol'
     ];
 
     public function cliente(){

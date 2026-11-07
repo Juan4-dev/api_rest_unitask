@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class RequestVehiculo extends FormRequest
+class VehiculoRequest extends FormRequest
 {
 
     public function authorize(): bool

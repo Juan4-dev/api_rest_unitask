@@ -12,6 +12,10 @@ class ServicioRepository extends BaseRepository implements ServicioInterface
         parent::__construct($servicio);
     }
 
+    public function find(int $id)
+    {
+        return $this->model->find($id);
+    }
     public function findByName(string $nombre_servicio)
     {
         return $this->model->where('nombre_servicio', $nombre_servicio)->get();
@@ -27,7 +31,7 @@ class ServicioRepository extends BaseRepository implements ServicioInterface
         return $this->model->where('id_pago', $idPago)->get();
     }
 
-    public function getHoursFromJob(int $horas_labor)
+    public function getHoursFromJob(string $horas_labor)
     {
         return $this->model->where('horas_labor', $horas_labor)->get();
     }

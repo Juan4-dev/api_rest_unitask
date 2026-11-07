@@ -8,5 +8,4 @@ interface EmpleadoInterface extends BaseInterface
     public function findByNumeroIdentificacion(int $numeroIdentificacion);
     public function findByApellidoEmpleado(string $apellidoEmpleado);
     public function findByTelefonoEmpleado(int $telefonoEmpleado);
-    public function findBycorreoEmpleado(string $correoEmpleado);
 }

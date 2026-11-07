@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\ClienteService;
-use App\Http\Requests\RequestCliente;
+use App\Http\Requests\ClienteRequest;
 
 class ClienteController extends Controller
 {
@@ -14,7 +14,7 @@ class ClienteController extends Controller
     // Traer todos los registros
     public function index()
     {
-        $registros = $this->clienteServices->getAll();
+        $registros = $this->clienteService->getAll();
 
         return response()->json([
             'message' => 'Se listaron los clientes correctamente',
@@ -138,4 +138,5 @@ class ClienteController extends Controller
             'data' => $registros
         ], 200);
     }
+
 }

@@ -12,6 +12,10 @@ class ReporteRepository extends BaseRepository implements ReporteInterface
         parent::__construct($reporte);
     }
 
+    public function findById(int $id)
+   {
+    return $this->model->find($id);
+   }
     public function findByFailureType(string $tipo_fallas)
     {
         return $this->model->where('tipo_fallas', $tipo_fallas)->get();

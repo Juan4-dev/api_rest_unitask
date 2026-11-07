@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Empleado;
+use App\Interfaces\EmpleadoInterface;
 
 class EmpleadoRepository extends BaseRepository implements EmpleadoInterface
 {
@@ -26,13 +27,8 @@ class EmpleadoRepository extends BaseRepository implements EmpleadoInterface
         return $this->model->where("apellido_empleado", $apellidoEmpleado)->get();
     }
 
-    public function findByTelefonoEmpleado(string $telefonoEmpleado)
+    public function findByTelefonoEmpleado(int $telefonoEmpleado)
     {
         return $this->model->where("telefono_empleado", $telefonoEmpleado)->get();
-    }
-
-    public function findByCorreoEmpleado(string $correoEmpleado)
-    {
-        return $this->model->where("correo_empleado", $correoEmpleado)->get();
     }
 }

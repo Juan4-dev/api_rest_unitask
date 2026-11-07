@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('asistencias', function (Blueprint $table) {
             $table->id('id_asistencia'); 
             $table->timestamp('hora_entrada');
-            $table->timestamp('hora_salida');
+            $table->time('hora_salida')->nullable();
             $table->string('estado_validacion', 50);
             $table->date('fecha');
             $table->unsignedBigInteger('numero_identificacion');

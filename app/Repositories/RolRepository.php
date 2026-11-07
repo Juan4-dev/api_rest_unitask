@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Rol;
+use App\Interfaces\RolInterface;
 
 class RolRepository extends BaseRepository implements RolInterface
 {
