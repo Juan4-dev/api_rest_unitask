@@ -26,7 +26,7 @@ Route::prefix('v1')->group(function () {
 
     Route::get('rol/buscar/nombre/{nombre_rol}', [RolController::class, 'findByNameRol']);
 
-    Route::apiResource('rol', EmpleadoController::class);
+    Route::apiResource('rol', RolController::class);
 
     //Pago
 

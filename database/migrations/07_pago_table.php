@@ -20,6 +20,9 @@ return new class extends Migration
 
             $table->foreign('numero_identificacion')->references('numero_identificacion')->on('empleados')->onDelete('cascade');
 
+            $table->timestamps();
+            $table->softDeletes();
+
         });
     }
     /**

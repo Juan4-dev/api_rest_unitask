@@ -15,7 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('numero_identificacion')->primary();
             $table->string('nombre_empleado', 40);
             $table->string('apellido_empleado', 40);
-            $table->integer('telefono_empleado');
+            $table->string('telefono_empleado', 20);
             $table->string('correo_empleado', 80);
 
             $table->timestamps();

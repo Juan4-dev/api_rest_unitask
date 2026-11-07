@@ -5,16 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\User;
 
 class Pago extends Model
 {
+    use HasFactory, SoftDeletes;
+
     protected $table = "pagos";
-    protected $fillabe=[
-        "total_pago"
+    protected $primaryKey = "id_pago";
+
+    protected $fillable = [
+        "total_pago",
+        "estado",
+        "cantidad",
+        "numero_identificacion"
     ];
 
-    public function usuario(){
-        return $this->hasMany(usuario::class);
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'numero_identificacion', 'numero_identificacion');
     }
 }
