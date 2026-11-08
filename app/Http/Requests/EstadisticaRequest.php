@@ -36,7 +36,7 @@ class EstadisticaRequest extends FormRequest
                 'integer',
                 'exists:servicios,id_labor'
             ],
-            'periodo_evualado' => [
+            'periodo_evaluado' => [
                 $isUpdate ? 'sometimes' : 'required',
                 'date'
             ]

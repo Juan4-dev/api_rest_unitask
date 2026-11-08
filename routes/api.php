@@ -62,6 +62,7 @@ Route::prefix('v1')->group(function () {
     Route::get('estadistica/rango/{rango}', [EstadisticaController::class, 'getByDateRange']);
     Route::get('estadistica/periodo/{periodo}', [EstadisticaController::class, 'findByChartAndPeriod']);
     Route::get('estadistica/reporte/{reporte}', [EstadisticaController::class, 'findByReport']);
+    
     Route::apiResource('estadistica', EstadisticaController::class);
 
     // Usuario

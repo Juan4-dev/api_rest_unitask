@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Repositories;
+
 use App\Models\Estadistica;
+use App\Interfaces\EstadisticaInterface;
 
 class EstadisticaRepository extends BaseRepository implements EstadisticaInterface
 {

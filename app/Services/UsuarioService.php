@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UsuarioService
 {
-    protected UsuarioInterface $usuarioRepository;
+    protected UsuarioRepository $usuarioRepository;
 
-    public function __construct(UsuarioRepository $usuarioRepository) 
+    public function __construct(UsuarioRepository $usuarioRepository)
     {
-        $this->usuarioRepository = $usuarioRepository;    
+        $this->usuarioRepository = $usuarioRepository;
     }
     
     public function getAll()
