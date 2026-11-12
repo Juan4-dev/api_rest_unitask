@@ -11,18 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pagos', function (Blueprint $table) {
-            $table->id('id_pago');
-            $table->decimal('total_pago', 10, 2);
-            $table->string('estado', 40);
-            $table->integer('cantidad');
+        Schema::create('asistencias', function (Blueprint $table) {
+            $table->id('id_asistencia'); 
+            $table->timestamp('hora_entrada');
+            $table->time('hora_salida')->nullable();
+            $table->string('estado_validacion', 50);
+            $table->date('fecha');
             $table->unsignedBigInteger('numero_identificacion');
-
-            $table->foreign('numero_identificacion')->references('numero_identificacion')->on('empleados')->onDelete('cascade');
-
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('numero_identificacion')->references('numero_identificacion')->on('usuarios')->onDelete('cascade');
         });
     }
     /**
@@ -30,9 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pagos');
+        Schema::dropIfExists('asistencias');
     }
-};
-return new class extends Migration{
-
 };
