@@ -7,7 +7,6 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\AsistenciaController;
-use App\Http\Controllers\EstadisticaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\HorarioController;

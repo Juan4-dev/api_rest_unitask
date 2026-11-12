@@ -1,28 +1,34 @@
 services:
   db:
-    image: mysql:latest
-    container_name: mysql_container
+    image: postgres:latest
+    container_name: postgres_container
     environment:
-      - MYSQL_ROOT_PASSWORD=1234
+      - POSTGRES_DB=unitask_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
     ports:
-      - "3307:3306"
+      - "5432:5432"
     networks:
       - red_api
     volumes:
-      - mysql_data_api:/var/lib/mysql
+      - postgres_data_api:/var/lib/postgresql
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin_container
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
     environment:
-      - PMA_HOST=db
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=1234
     ports:
       - "8081:80"
     networks:
       - red_api
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
 
 volumes:
-  mysql_data_api:
+  postgres_data_api:
+  pgadmin_data:
 
 networks:
   red_api:
