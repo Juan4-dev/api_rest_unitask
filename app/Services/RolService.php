@@ -35,6 +35,11 @@ class RolService
         return $this->rolRepository->delete($id);
     }
 
+    public function findByRol(int $rol)
+    {
+        return $this->usuarioRepository->findByRol($rol);
+    }
+
     public function findByNameRol(string $nombreRol)
     {
         return $this->rolRepository->findByNameRol($nombreRol); 

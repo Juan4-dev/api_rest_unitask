@@ -12,19 +12,29 @@ class UsuarioRepository extends BaseRepository implements UsuarioInterface
         parent::__construct($usuario);
     }
 
-    public function findByUsuario(string $usuario)
+    public function findByNombreEmpleado(string $nombreEmpleado)
     {
-        return $this->model->where("usuario", $usuario)->first();
+        return $this->model->where("nombre_empleado", $nombreEmpleado)->get();
     }
 
-    public function findByIdentification(string $numeroIdentificacion)
+    public function findByNumeroIdentificacion(int $numeroIdentificacion)
     {
         return $this->model->where("numero_identificacion", $numeroIdentificacion)->first();
     }
 
-    public function findByRol(int $rol)
+    public function findByApellidoEmpleado(string $apellidoEmpleado)
     {
-        return $this->model->where("rol", $rol)->get();
+        return $this->model->where("apellido_empleado", $apellidoEmpleado)->get();
+    }
+
+    public function findByTelefonoEmpleado(int $telefonoEmpleado)
+    {
+        return $this->model->where("telefono_empleado", $telefonoEmpleado)->get();
+    }
+
+    public function findByUsuario(string $usuario)
+    {
+        return $this->model->where("usuario", $usuario)->first();
     }
 
     public function assignRole(int $usuario, int $rol)
@@ -34,13 +44,12 @@ class UsuarioRepository extends BaseRepository implements UsuarioInterface
 
     public function verifyCredentials(string $usuario, string $contraseña)
     {
-    $user = $this->model->where('usuario', $usuario)->first();
-
-    if ($user && Hash::check($contraseña, $user->contraseña)) {
-        return $user;
+        $user = $this->model->where('usuario', $usuario)->first();
+        
+        if ($user && Hash::check($contraseña, $user->contraseña)) 
+            {
+                return $user;
+                }
+                return null;
     }
-
-    return null;
-    }
-
 }
