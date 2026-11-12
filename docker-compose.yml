@@ -1,4 +1,25 @@
+
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_container
+    ports:
+      - "8000:80"
+    environment:
+      - DB_CONNECTION=pgsql
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=unitask_db
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=1234
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - red_api
+
   db:
     image: postgres:latest
     container_name: postgres_container
@@ -12,6 +33,11 @@ services:
       - red_api
     volumes:
       - postgres_data_api:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d unitask_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   pgadmin:
     image: dpage/pgadmin4
@@ -25,6 +51,8 @@ services:
       - red_api
     volumes:
       - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - db
 
 volumes:
   postgres_data_api:
