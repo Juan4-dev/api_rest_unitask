@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Usuario;
 use App\Interfaces\UsuarioInterface;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioRepository extends BaseRepository implements UsuarioInterface
 {
@@ -27,7 +28,7 @@ class UsuarioRepository extends BaseRepository implements UsuarioInterface
         return $this->model->where("apellido_empleado", $apellidoEmpleado)->get();
     }
 
-    public function findByTelefonoEmpleado(int $telefonoEmpleado)
+    public function findByTelefonoEmpleado(string $telefonoEmpleado) // Cambiado a string por si el teléfono trae símbolos o ceros a la izquierda
     {
         return $this->model->where("telefono_empleado", $telefonoEmpleado)->get();
     }
@@ -37,9 +38,9 @@ class UsuarioRepository extends BaseRepository implements UsuarioInterface
         return $this->model->where("usuario", $usuario)->first();
     }
 
-    public function assignRole(int $usuario, int $rol)
+    public function assignRole(int $numeroIdentificacion, int $idRol)
     {
-        return $this->model->where("id", $usuario)->update(["rol" => $rol]);
+        return $this->model->where("numero_identificacion", $numeroIdentificacion)->update(["id_rol" => $idRol]);
     }
 
     public function verifyCredentials(string $usuario, string $contraseña)
@@ -47,9 +48,10 @@ class UsuarioRepository extends BaseRepository implements UsuarioInterface
         $user = $this->model->where('usuario', $usuario)->first();
         
         if ($user && Hash::check($contraseña, $user->contraseña)) 
-            {
-                return $user;
-                }
-                return null;
+        {
+            return $user;
+        }
+        
+        return null;
     }
 }

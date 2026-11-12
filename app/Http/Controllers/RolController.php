@@ -77,6 +77,22 @@ class RolController extends Controller
         ], 200);
     }
 
+    public function findByRol(int $rol)
+    {
+        $registros = $this->rolService->findByRol($rol);
+
+        if (!$registros || (method_exists($registros, 'isEmpty') && $registros->isEmpty())) {
+            return response()->json([
+                'message' => 'No se encontró el rol con ese identificador'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Rol encontrado exitosamente',
+            'data' => $registros
+        ], 200);
+    }
+
     public function findByNameRol(string $nombreRol)
     {
         $registros = $this->rolService->findByNameRol($nombreRol);

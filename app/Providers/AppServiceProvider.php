@@ -13,6 +13,7 @@ use App\Interfaces\ServicioInterface;
 use App\Interfaces\HorarioInterface;
 use App\Interfaces\AsistenciaInterface;
 use App\Interfaces\UsuarioInterface;
+use App\Interfaces\TurnoInterface;
 
 // Repositories
 use App\Repositories\VehiculoRepository;
@@ -23,6 +24,7 @@ use App\Repositories\ServicioRepository;
 use App\Repositories\HorarioRepository;
 use App\Repositories\AsistenciaRepository;
 use App\Repositories\UsuarioRepository;
+use App\Repositories\TurnoRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,7 +41,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ServicioInterface::class, ServicioRepository::class);
         $this->app->bind(HorarioInterface::class, HorarioRepository::class);
         $this->app->bind(AsistenciaInterface::class, AsistenciaRepository::class);
-    } 
+        $this->app->bind(TurnoInterface::class, TurnoRepository::class);
+    }
 
     /**
      * Bootstrap any application services.

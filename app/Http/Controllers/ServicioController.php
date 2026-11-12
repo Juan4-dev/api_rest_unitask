@@ -24,7 +24,6 @@ class ServicioController extends Controller
     public function store(ServicioRequest $request)
     {
         $registroServicio = $this->servicioService->createServicio($request->validated());
-             
         return response()->json([
             'message' => 'El servicio se creó correctamente',
             'datosRegistrados' => $registroServicio
