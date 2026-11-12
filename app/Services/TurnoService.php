@@ -12,12 +12,12 @@ class TurnoService
 
     public function getAll()
     {
-        return $this->turnoRepository->all();
+        return $this->turnoRepository->getAll(); // Corregido de all() a getAll()
     }
 
     public function getById($id)
     {
-        return $this->turnoRepository->find($id);
+        return $this->turnoRepository->getById($id); // Corregido de find() a getById()
     }
 
     public function create(array $data)

@@ -12,12 +12,12 @@ class UsuarioService
 
     public function getAll()
     {
-        return $this->usuarioRepository->all();
+        return $this->usuarioRepository->getAll(); // Cambiado de all() a getAll()
     }
 
     public function getById($id)
     {
-        return $this->usuarioRepository->find($id);
+        return $this->usuarioRepository->getById($id); // Cambiado de find() a getById() según el BaseRepository
     }
 
     public function create(array $data)

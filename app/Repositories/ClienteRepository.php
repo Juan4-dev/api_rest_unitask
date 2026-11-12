@@ -3,16 +3,13 @@
 namespace App\Repositories;
 
 use App\Models\Cliente;
+use App\Interfaces\ClienteInterface;
 
 class ClienteRepository extends BaseRepository implements ClienteInterface
 {
-    
-    protected Model $model;
-
-    public function __construct(Cliente $model)
+    public function __construct(Cliente $cliente)
     {
-        parent::__construct($model);
-        $this->model = $model;
+        parent::__construct($cliente);
     }
 
     public function findByCedula(int $cedulaCliente)

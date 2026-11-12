@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Vehiculo;
+use App\Interfaces\VehiculoInterface;
 
 class VehiculoRepository extends BaseRepository implements VehiculoInterface
 
