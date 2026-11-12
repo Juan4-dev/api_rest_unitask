@@ -21,8 +21,8 @@ class Asistencia extends Model
         'numero_identificacion',
     ];
 
-    public function empleado()
+    public function usuario()
     {
-        return $this->belongsTo(Empleado::class, 'numero_identificacion');
+        return $this->belongsTo(Usuario::class, 'numero_identificacion');
     }
 }

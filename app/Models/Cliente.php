@@ -13,7 +13,6 @@ class Cliente extends Model
 
     protected $table = 'clientes';
 
-    // PK personalizada: cédula (entero, no autoincrementable)
     protected $primaryKey = 'cedula_cliente';
     public $incrementing = false;
     protected $keyType = 'int';

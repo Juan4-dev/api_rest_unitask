@@ -22,10 +22,13 @@ class Horario extends Model
         'jornada',
     ];
 
-    public function empleado(){
-
-    return $this->belongsTo(Empleado::class, 'numero_identificacion');
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class, 'numero_identificacion');
     }
 
-     
+    public function turnos()
+    {
+        return $this->hasMany(Turno::class, 'id_horario', 'id_horario');
+    }
 }
