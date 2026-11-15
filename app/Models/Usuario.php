@@ -37,10 +37,6 @@ class Usuario extends Model
         return $this->hasMany(Asistencia::class);
     }
 
-    public function reportes()
-    {
-        return $this->hasMany(Reporte::class);
-    }
 
     public function horarios()
     {

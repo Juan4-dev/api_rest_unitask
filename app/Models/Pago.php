@@ -3,25 +3,36 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pago extends Model
 {
-    use HasFactory, SoftDeletes;
-
-    protected $table = "pagos";
-    protected $primaryKey = "id_pago";
+    protected $table = 'pagos';
+    protected $primaryKey = 'id_pago';
 
     protected $fillable = [
-        "total_pago",
-        "estado",
-        "cantidad",
-        "numero_identificacion"
+        'total_pago',
+        'cantidad',
+        'estado',
+        'metodo_pago',
+        'fecha_pago',
+        'numero_identificacion',
+        'placa_vehiculo',
+        'id_servicio',
     ];
 
-    public function empleado()
+    public function usuario()
     {
-        return $this->belongsTo(Empleado::class, 'numero_identificacion', 'numero_identificacion');
+        return $this->belongsTo(Usuario::class, 'numero_identificacion', 'numero_identificacion');
+    }
+
+    public function vehiculo()
+    {
+        return $this->belongsTo(Vehiculo::class, 'placa_vehiculo', 'placa_vehiculo');
+    }
+
+    // Relación opcional con el servicio
+    public function servicio()
+    {
+        return $this->belongsTo(Servicio::class, 'id_labor', 'id_labor');
     }
 }

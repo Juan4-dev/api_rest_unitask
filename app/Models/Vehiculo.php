@@ -22,6 +22,7 @@ class Vehiculo extends Model
         'placa_vehiculo',
         'tipo_vehiculo',
         'id_labor',
+        'cedula_cliente',
     ];
 
     
@@ -31,8 +32,8 @@ class Vehiculo extends Model
     }
 
     
-    public function clientes(): HasMany
+    public function cliente(): BelongsTo
     {
-        return $this->hasMany(Cliente::class, 'placa_vehiculo');
+        return $this->belongsTo(Cliente::class, 'cedula_cliente', 'cedula_cliente');
     }
 }

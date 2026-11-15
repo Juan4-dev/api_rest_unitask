@@ -11,24 +11,29 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('asistencias', function (Blueprint $table) {
-            $table->id('id_asistencia'); 
-            $table->timestamp('hora_entrada');
-            $table->time('hora_salida')->nullable();
-            $table->string('estado_validacion', 50);
-            $table->date('fecha');
-            $table->unsignedBigInteger('numero_identificacion');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::create('turnos', function (Blueprint $table) {
+            $table->id('id_turno');
+            $table->date('dia_turno')->nullable();
+            $table->time('hora_inicio')->nullable();
+            $table->time('hora_fin')->nullable();
+            $table->integer('horas_extras')->default(0);
 
+            $table->softDeletes();
+            $table->timestamps();
+
+            $table->unsignedBigInteger('numero_identificacion')->nullable();
             $table->foreign('numero_identificacion')->references('numero_identificacion')->on('usuarios')->onDelete('cascade');
+
+           
+
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('asistencias');
+        Schema::dropIfExists('turnos');
     }
 };

@@ -23,7 +23,7 @@ return new class extends Migration
             ORDER BY fecha DESC;
         ");
         
-        // Segunda vista: Estadísticas de servicios
+        // Segunda vista: Estadísticas de servicios 
         DB::statement("
             CREATE OR REPLACE VIEW vista_estadisticas_servicios AS
             SELECT
@@ -34,7 +34,7 @@ return new class extends Migration
                 p.estado AS estado_pago,
                 p.total_pago
             FROM servicios s
-            INNER JOIN pagos p ON p.id_pago = s.id_pago;
+            INNER JOIN pagos p ON p.id_labor = s.id_labor;
         ");
     }
 

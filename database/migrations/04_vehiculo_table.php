@@ -15,10 +15,13 @@ return new class extends Migration
             $table->string("placa_vehiculo", 10)->primary();
             $table->string("tipo_vehiculo", 30);
             $table->unsignedBigInteger("id_labor");
+            $table->unsignedBigInteger("cedula_cliente");
+
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign("id_labor")->references("id_labor")->on("servicios")->onDelete("cascade");
+            $table->foreign("cedula_cliente")->references("cedula_cliente")->on("clientes")->onDelete("cascade");
         });
     }
 
