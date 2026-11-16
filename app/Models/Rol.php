@@ -19,6 +19,12 @@ class Rol extends Model
     }
 
     public function servicio(){
-        return $this->hasOne(servicio::class);
+        return $this->hasOne(servicio::class);  
     }
+
+    public function usuario(){
+        return $this->hasMany(Usuario::class);
+    }
+
+    
 }

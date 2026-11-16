@@ -22,10 +22,12 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-             $table->unsignedBigInteger('numero_identificacion')->nullable();
+            $table->unsignedBigInteger('numero_identificacion')->nullable();
             $table->foreign('numero_identificacion')->references('numero_identificacion')->on('usuarios')->onDelete('cascade');
 
 
+            $table->unsignedBigInteger('id_turno');
+            $table->foreign('id_turno')->references('id_turno')->on('turnos')->onDelete('cascade');
         });
     }
 

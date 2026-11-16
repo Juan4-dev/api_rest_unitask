@@ -40,12 +40,6 @@ class ClienteRequest extends FormRequest
                 $isUpdate ? 'sometimes' : 'required',
                 'email',
                 'max:30'
-            ],
-            'placa_vehiculo' => [
-                $isUpdate ? 'sometimes' : 'required',
-                'string',
-                'max:10',
-                'exists:vehiculos,placa_vehiculo'
             ]
         ];
     }
@@ -67,12 +61,7 @@ class ClienteRequest extends FormRequest
 
             'correo_cliente.required' => 'El correo electrónico es obligatorio.',
             'correo_cliente.email' => 'Debe proporcionar un correo electrónico válido.',
-            'correo_cliente.max' => 'El correo electrónico no puede exceder los 30 caracteres.',
-
-            'placa_vehiculo.required' => 'La placa del vehículo es obligatoria.',
-            'placa_vehiculo.string' => 'La placa del vehículo debe ser texto.',
-            'placa_vehiculo.max' => 'La placa del vehículo no puede exceder los 10 caracteres.',
-            'placa_vehiculo.exists' => 'El vehículo seleccionado no existe en el sistema.'
+            'correo_cliente.max' => 'El correo electrónico no puede exceder los 30 caracteres.'
         ];
     }
 }

@@ -37,7 +37,7 @@ class AsistenciaRequest extends FormRequest
             'numero_identificacion' => [
                 $isUpdate ? 'sometimes' : 'required',
                 'integer',
-                'exists:empleados,numero_identificacion'
+                'exists:usuarios,numero_identificacion'
             ]
         ];
     }

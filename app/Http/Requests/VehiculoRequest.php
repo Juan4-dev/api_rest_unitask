@@ -36,6 +36,11 @@ class VehiculoRequest extends FormRequest
                 $isUpdate ? 'sometimes' : 'required',
                 'integer',
                 'exists:servicios,id_labor'
+            ],
+            'cedula_cliente' =>[
+                $isUpdate ? 'sometimes' : 'required',
+                'integer',
+                'exists:clientes,cedula_cliente'
             ]
         ];
     }
@@ -54,7 +59,11 @@ class VehiculoRequest extends FormRequest
 
             'id_labor.required' => 'El servicio es obligatorio.',
             'id_labor.integer' => 'El identificador del servicio debe ser numérico.',
-            'id_labor.exists' => 'El servicio seleccionado no existe en el sistema.'
+            'id_labor.exists' => 'El servicio seleccionado no existe en el sistema.',
+
+            'cedula_cliente.required' => 'La cédula del cliente es obligatoria.',
+            'cedula_cliente.integer' => 'La cédula del cliente debe ser un número.',
+            'cedula_cliente.exists' => 'El cliente con esa cédula no está registrado en el sistema.'
         ];
     }
 }

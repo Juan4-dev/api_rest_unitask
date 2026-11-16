@@ -22,6 +22,7 @@ class RolRequest extends FormRequest
                 $isUpdate ? 'sometimes' : 'required',
                 'string',
                 'max:30',
+                'in:Empleado,Administrador',
                 Rule::unique('roles', 'nombre_rol')->ignore($rolId, 'id_rol')
             ]
         ];
@@ -33,7 +34,8 @@ class RolRequest extends FormRequest
             'nombre_rol.required' => 'El nombre del rol es obligatorio.',
             'nombre_rol.string' => 'El nombre del rol debe ser texto.',
             'nombre_rol.max' => 'El nombre del rol no puede exceder los 30 caracteres.',
-            'nombre_rol.unique' => 'Este nombre de rol ya se encuentra registrado.'
+            'nombre_rol.unique' => 'Este nombre de rol ya se encuentra registrado.',
+            'nombre_rol.in' => 'El nombre del Rol debe ser Administrador o Empleado'
         ];
     }
 }

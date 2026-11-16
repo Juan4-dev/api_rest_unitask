@@ -20,6 +20,9 @@ class Horario extends Model
         'nombre_turno',
         'fecha_turno',
         'jornada',
+        'numero_identificacion',
+        'id_turno'
+    
     ];
 
     public function usuario()

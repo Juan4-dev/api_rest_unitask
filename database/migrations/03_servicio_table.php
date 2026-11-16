@@ -19,13 +19,9 @@ return new class extends Migration
             $table->timestamp('horas_labor')->nullable();
             $table->integer('cantidad_servicios')->default(0);
             
-            $table->unsignedBigInteger('id_pago')->nullable();
-
-
+           
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('id_pago')->references('id_pago')->on('pagos')->onDelete('cascade');
         });
     }
 

@@ -26,6 +26,8 @@ class UsuarioController extends Controller
     {
         $registroUsuario = $this->usuarioService->create($request->validated());
 
+        $registroUsuario->load('rol');
+
         return response()->json([
             'message' => 'El usuario se registró correctamente',
             'datosRegistrados' => $registroUsuario
