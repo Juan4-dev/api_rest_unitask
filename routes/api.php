@@ -19,7 +19,7 @@ Route::prefix('v1')->group(function () {
     Route::get('usuario/buscar/apellido/{apellido_empleado}', [UsuarioController::class, 'findByApellidoEmpleado']);
     Route::get('usuario/buscar/telefono/{telefono_empleado}', [UsuarioController::class, 'findByTelefonoEmpleado']);
     Route::get('usuario/buscar/username/{usuario}', [UsuarioController::class, 'findByUsuario']);
-    Route::post('usuario/asignar_rol/{id}', [UsuarioController::class, 'assignRole']);
+    Route::post('usuario/asignar_rol/{numero_identificacion}', [UsuarioController::class, 'assignRole']);
     Route::post('usuario/verificar', [UsuarioController::class, 'verifyCredentials']);
 
     Route::apiResource('usuario', UsuarioController::class);
@@ -31,7 +31,7 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('rol', RolController::class);
 
     // Pago
-    Route::get('pago/calculo/{total_pago}', [PagoController::class, 'calcularNomina']);
+    Route::get('pago/calculo/{numero_identificacion}', [PagoController::class, 'calcularNomina']);
 
     Route::apiResource('pago', PagoController::class);
 
@@ -41,12 +41,14 @@ Route::prefix('v1')->group(function () {
     Route::get('servicio/buscar/pago/{idPago}', [ServicioController::class, 'findByPay']);
     Route::post('servicio/buscar/horas', [ServicioController::class, 'findByHours']);
     Route::post('servicio/buscar/cantidad', [ServicioController::class, 'findByQuantity']);
+    Route::get('servicio/buscar/identidad/{numeroIdentificacion}', [ServicioController::class, 'findByIdentity']);
+    Route::get('servicio/buscar/vehiculo/{placaVehiculo}', [ServicioController::class, 'findByVehiculo']);
 
     Route::apiResource('servicio', ServicioController::class);
 
     // Asistencia
     Route::get('asistencia/fecha/{fecha}', [AsistenciaController::class, 'findByDate']);
-    Route::get('asistencia/rango/{rango}', [AsistenciaController::class, 'findByDateRange']);
+    Route::get('asistencia/rango', [AsistenciaController::class, 'findByDateRange']); // Usa query params: ?fecha_inicio=...&fecha_fin=...
     Route::get('asistencia/identidad/{numero_identificacion}', [AsistenciaController::class, 'findByIdentity']);
     Route::get('asistencia/estado/{estado_validacion}', [AsistenciaController::class, 'findByStatus']);
     Route::post('asistencia/entrada/{id}', [AsistenciaController::class, 'registerEntry']);
@@ -76,8 +78,12 @@ Route::prefix('v1')->group(function () {
 
     // Turno
     Route::get('turno/buscar/fecha/{diaTurno}', [TurnoController::class, 'findByFecha']);
-    Route::get('turno/buscar/rango', [TurnoController::class, 'findByRangoFechas']);
+    Route::get('turno/buscar/rango/{fechaInicio}/{fechaFin}', [TurnoController::class, 'findByRangoFechas']);
     Route::get('turno/buscar/horas_extras', [TurnoController::class, 'findConHorasExtras']);
+    Route::get('turno/buscar/horario/{idHorario}', [TurnoController::class, 'findByHorario']);
+    Route::get('turno/buscar/nombre/{nombreTurno}', [TurnoController::class, 'findByNombre']);
+    Route::get('turno/buscar/jornada/{jornada}', [TurnoController::class, 'findByJornada']);
+    Route::get('turno/buscar/empleado/{numeroIdentificacion}', [TurnoController::class, 'findByEmpleado']);
 
     Route::apiResource('turno', TurnoController::class);
 
