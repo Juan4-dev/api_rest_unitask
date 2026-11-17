@@ -1,87 +1,124 @@
 <?php
 
-namespace App\Services;
+namespace App\Http\Controllers;
 
-use App\Interfaces\UsuarioInterface;
-use Illuminate\Support\Facades\Hash;
+use App\Services\HorarioService;
+use Illuminate\Http\Request; // O usa el FormRequest correspondiente si lo tienes creado para Horarios
 
-class UsuarioService
+class HorarioController extends Controller
 {
-    public function __construct(protected UsuarioInterface $usuarioRepository)
+    public function __construct(private HorarioService $horarioService)
     {
     }
 
-    public function getAll()
+    public function index()
     {
-        return $this->usuarioRepository->getAll();
+        $registros = $this->horarioService->getAllHorarios();
+
+        return response()->json([
+            'message' => 'Se listaron los horarios correctamente',
+            'data' => $registros
+        ], 200);
     }
 
-    // Cambiamos $id por $numeroIdentificacion para reflejar la PK real de la tabla
-    public function getById(int $numeroIdentificacion)
+    public function store(Request $request)
     {
-        return $this->usuarioRepository->getById($numeroIdentificacion);
+        $validatedData = $request->validate([
+            'tipo_horario' => 'required|string|max:30',
+            'periodo' => 'nullable|date',
+            'numero_identificacion' => 'required|exists:usuarios,numero_identificacion'
+        ]);
+
+        $registroHorario = $this->horarioService->createHorario($validatedData);
+
+        return response()->json([
+            'message' => 'El horario se registró correctamente',
+            'datosRegistrados' => $registroHorario
+        ], 201);
     }
 
-    public function create(array $data)
+    public function show(int $id)
     {
-        if (isset($data['contraseña'])) {
-            $data['contraseña'] = Hash::make($data['contraseña']);
+        $registro = $this->horarioService->getHorarioById($id);
+
+        if (!$registro) {
+            return response()->json([
+                'message' => 'No se encontró el horario con ese identificador'
+            ], 404);
         }
 
-        return $this->usuarioRepository->create($data);
+        return response()->json([
+            'message' => 'Se listó el horario correctamente',
+            'data' => $registro
+        ], 200);
     }
 
-    public function update(int $numeroIdentificacion, array $data)
+    public function update(Request $request, int $id)
     {
-        if (isset($data['contraseña'])) {
-            $data['contraseña'] = Hash::make($data['contraseña']);
+        $validatedData = $request->validate([
+            'tipo_horario' => 'sometimes|string|max:30',
+            'periodo' => 'nullable|date',
+            'numero_identificacion' => 'sometimes|exists:usuarios,numero_identificacion'
+        ]);
+
+        $registroActualizado = $this->horarioService->updateHorario($id, $validatedData);
+
+        if (!$registroActualizado) {
+            return response()->json([
+                'message' => 'No se encontró el horario con ese identificador'
+            ], 404);
         }
 
-        return $this->usuarioRepository->update($numeroIdentificacion, $data);
+        return response()->json([
+            'message' => 'Se actualizó el horario correctamente',
+            'data' => $registroActualizado
+        ], 200);
     }
 
-    public function delete(int $numeroIdentificacion)
+    public function destroy(int $id)
     {
-        return $this->usuarioRepository->delete($numeroIdentificacion);
+        $validar = $this->horarioService->deleteHorario($id);
+
+        if (!$validar) {
+            return response()->json([
+                'message' => 'No se encontró el horario con ese identificador'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'El horario se eliminó correctamente'
+        ], 200);
     }
 
-    public function findByNombreEmpleado(string $nombreEmpleado)
+    // Métodos personalizados de búsqueda basados exactamente en tu HorarioService
+
+    public function getByType(string $tipoHorario)
     {
-        return $this->usuarioRepository->findByNombreEmpleado($nombreEmpleado);
+        $registros = $this->horarioService->getHorariosByType($tipoHorario);
+
+        return response()->json([
+            'message' => 'Se listaron los horarios por tipo correctamente',
+            'data' => $registros
+        ], 200);
     }
 
-    public function findByNumeroIdentificacion(int $numeroIdentificacion)
+    public function getByPeriod(string $periodo)
     {
-        return $this->usuarioRepository->findByNumeroIdentificacion($numeroIdentificacion);
+        $registros = $this->horarioService->getHorariosByPeriod($periodo);
+
+        return response()->json([
+            'message' => 'Se listaron los horarios por periodo correctamente',
+            'data' => $registros
+        ], 200);
     }
 
-    public function findByApellidoEmpleado(string $apellidoEmpleado)
+    public function getByIdentity(int $numeroIdentificacion)
     {
-        return $this->usuarioRepository->findByApellidoEmpleado($apellidoEmpleado);
-    }
+        $registros = $this->horarioService->getHorariosByIdentity($numeroIdentificacion);
 
-    public function findByTelefonoEmpleado(string $telefonoEmpleado)
-    {
-        return $this->usuarioRepository->findByTelefonoEmpleado($telefonoEmpleado);
-    }
-
-    public function findByCorreoEmpleado(string $correoEmpleado)
-    {
-        return $this->usuarioRepository->findByCorreoEmpleado($correoEmpleado);
-    }
-
-    public function findByUsuario(string $usuario)
-    {
-        return $this->usuarioRepository->findByUsuario($usuario);
-    }
-
-    public function assignRole(int $numeroIdentificacion, int $idRol)
-    {
-        return $this->usuarioRepository->assignRole($numeroIdentificacion, $idRol);
-    }
-
-    public function verifyCredentials(string $usuario, string $contraseña)
-    {
-        return $this->usuarioRepository->verifyCredentials($usuario, $contraseña);
+        return response()->json([
+            'message' => 'Se listaron los horarios por número de identificación correctamente',
+            'data' => $registros
+        ], 200);
     }
 }

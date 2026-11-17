@@ -42,21 +42,25 @@ return new class extends Migration
         ");
         //Cuarta Vista
         DB::statement("
-        CREATE OR REPLACE VIEW vista_reportes AS
-        SELECT
+    CREATE OR REPLACE VIEW vista_reportes AS
+    SELECT 
         u.numero_identificacion,
         u.nombre_empleado,
         u.apellido_empleado,
         r.nombre_rol,
         a.estado_validacion AS tipo_fallas,
         COUNT(a.id_asistencia) AS cantidad_fallas
-        FROM asistencias a
-        INNER JOIN usuarios u ON u.numero_identificacion = a.numero_identificacion
-        INNER JOIN roles r ON r.id_rol = u.id_rol
-        WHERE a.estado_validacion IN ('Tarde', 'Ausente')
-        GROUP BY
-        u.numero_identificacion, u.nombre_empleado, u.apellido_empleado,
-        r.nombre_rol, a.estado_validacion;");
+    FROM asistencias a
+    INNER JOIN usuarios u ON u.numero_identificacion = a.numero_identificacion
+    INNER JOIN roles r ON r.id_rol = u.id_rol
+    WHERE a.estado_validacion IN ('Tarde', 'Ausente')
+    GROUP BY 
+        u.numero_identificacion, 
+        u.nombre_empleado, 
+        u.apellido_empleado,
+        r.nombre_rol, 
+        a.estado_validacion
+");
         DB::statement(
             "
         CREATE OR REPLACE VIEW vista_resumen_financiero_diario AS
