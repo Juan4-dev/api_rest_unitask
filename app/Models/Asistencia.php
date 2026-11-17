@@ -23,6 +23,6 @@ class Asistencia extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'numero_identificacion');
+        return $this->belongsTo(Usuario::class, 'numero_identificacion', 'numero_identificacion');
     }
 }

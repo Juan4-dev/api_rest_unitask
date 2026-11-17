@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Usuario extends Model
@@ -11,7 +13,6 @@ class Usuario extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'usuarios';
-
     protected $primaryKey = 'numero_identificacion';
     public $incrementing = false;
     protected $keyType = 'int';
@@ -24,27 +25,35 @@ class Usuario extends Model
         'correo_empleado',
         'usuario',
         'contraseña',
-        'id_rol'
+        'id_rol',
     ];
 
-    public function servicios()
+    protected $hidden = [
+        'contraseña',
+    ];
+
+    public function rol(): BelongsTo
     {
-        return $this->hasMany(Servicio::class);
+        return $this->belongsTo(Rol::class, 'id_rol', 'id_rol');
     }
 
-    public function asistencias()
+    public function servicios(): HasMany
     {
-        return $this->hasMany(Asistencia::class);
+        return $this->hasMany(Servicio::class, 'numero_identificacion', 'numero_identificacion');
     }
 
-
-    public function horarios()
+    public function pagos(): HasMany
     {
-        return $this->hasMany(Horario::class);  
+        return $this->hasMany(Pago::class, 'numero_identificacion', 'numero_identificacion');
     }
 
-    public function rol()
+    public function asistencias(): HasMany
     {
-        return $this->belongsTo(Rol::class, 'id_rol');
+        return $this->hasMany(Asistencia::class, 'numero_identificacion', 'numero_identificacion');
+    }
+
+    public function horarios(): HasMany
+    {
+        return $this->hasMany(Horario::class, 'numero_identificacion', 'numero_identificacion');
     }
 }

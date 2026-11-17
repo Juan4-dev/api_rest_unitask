@@ -68,7 +68,7 @@ return new class extends Migration
         FROM pagos p
         GROUP BY CAST(p.created_at AS DATE), p.estado
         ORDER BY fecha_pago DESC;"
-         );
+        );
         }
 
     /**

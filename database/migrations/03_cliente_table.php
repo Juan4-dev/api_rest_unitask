@@ -9,11 +9,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->unsignedBigInteger('cedula_cliente')->primary(); 
+            $table->unsignedBigInteger('cedula_cliente')->primary();
             $table->string('nombre_cliente', 100);
             $table->string('apellido_cliente', 100);
             $table->string('correo_cliente', 150)->unique();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

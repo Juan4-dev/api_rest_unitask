@@ -18,7 +18,7 @@ Route::prefix('v1')->group(function () {
     Route::get('usuario/buscar/numero_identificacion/{numero_identificacion}', [UsuarioController::class, 'findByNumeroIdentificacion']);
     Route::get('usuario/buscar/apellido/{apellido_empleado}', [UsuarioController::class, 'findByApellidoEmpleado']);
     Route::get('usuario/buscar/telefono/{telefono_empleado}', [UsuarioController::class, 'findByTelefonoEmpleado']);
-    Route::get('usuario/buscar/username/{usuario}', [UsuarioController::class, 'findByUsuario']); // Ajustado para evitar cruces con la ruta show del resource
+    Route::get('usuario/buscar/username/{usuario}', [UsuarioController::class, 'findByUsuario']);
     Route::post('usuario/asignar_rol/{id}', [UsuarioController::class, 'assignRole']);
     Route::post('usuario/verificar', [UsuarioController::class, 'verifyCredentials']);
 
@@ -26,7 +26,7 @@ Route::prefix('v1')->group(function () {
 
     // Rol
     Route::get('rol/buscar/nombre/{nombre_rol}', [RolController::class, 'findByNameRol']);
-    Route::get('rol/buscar/rol/{rol}', [RolController::class, 'findByRol']); // Corregido a RolController y ruta más especifica
+    Route::get('rol/buscar/rol/{rol}', [RolController::class, 'findByRol']);
 
     Route::apiResource('rol', RolController::class);
 

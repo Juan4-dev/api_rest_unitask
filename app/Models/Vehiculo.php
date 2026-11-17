@@ -13,7 +13,6 @@ class Vehiculo extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'vehiculos';
-
     protected $primaryKey = 'placa_vehiculo';
     public $incrementing = false;
     protected $keyType = 'string';
@@ -21,19 +20,16 @@ class Vehiculo extends Model
     protected $fillable = [
         'placa_vehiculo',
         'tipo_vehiculo',
-        'id_labor',
         'cedula_cliente',
     ];
 
-    
-    public function servicio(): BelongsTo
-    {
-        return $this->belongsTo(Servicio::class, 'id_labor');
-    }
-
-    
     public function cliente(): BelongsTo
     {
         return $this->belongsTo(Cliente::class, 'cedula_cliente', 'cedula_cliente');
+    }
+
+    public function servicios(): HasMany
+    {
+        return $this->hasMany(Servicio::class, 'placa_vehiculo', 'placa_vehiculo');
     }
 }
