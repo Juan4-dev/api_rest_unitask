@@ -2,12 +2,15 @@
 
 namespace App\Services;
 
-use App\Repositories\PagoRepository;
+use App\Interfaces\PagoInterface;
 
 class PagoService
 {
-    public function __construct(protected PagoRepository $pagoRepository)
+    protected PagoInterface $pagoRepository;
+
+    public function __construct(PagoInterface $pagoRepository)
     {
+        $this->pagoRepository = $pagoRepository;
     }
 
     public function getAll()
@@ -15,7 +18,7 @@ class PagoService
         return $this->pagoRepository->getAll();
     }
 
-    public function getById($id)
+    public function getById(int $id)
     {
         return $this->pagoRepository->getById($id);
     }
@@ -25,12 +28,12 @@ class PagoService
         return $this->pagoRepository->create($data);
     }
 
-    public function update($id, array $data)
+    public function update(int $id, array $data)
     {
         return $this->pagoRepository->update($id, $data);
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
         return $this->pagoRepository->delete($id);
     }

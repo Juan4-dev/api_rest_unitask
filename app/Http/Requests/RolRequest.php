@@ -15,14 +15,14 @@ class RolRequest extends FormRequest
     public function rules(): array
     {
         $isUpdate = $this->isMethod('PUT') || $this->isMethod('PATCH');
+        
         $rolId = $this->route('rol') ?? $this->route('id_rol') ?? $this->route('id');
 
         return [
             'nombre_rol' => [
                 $isUpdate ? 'sometimes' : 'required',
                 'string',
-                'max:30',
-                'in:Empleado,Administrador',
+                'max:40',
                 Rule::unique('roles', 'nombre_rol')->ignore($rolId, 'id_rol')
             ]
         ];
@@ -33,9 +33,8 @@ class RolRequest extends FormRequest
         return [
             'nombre_rol.required' => 'El nombre del rol es obligatorio.',
             'nombre_rol.string' => 'El nombre del rol debe ser texto.',
-            'nombre_rol.max' => 'El nombre del rol no puede exceder los 30 caracteres.',
-            'nombre_rol.unique' => 'Este nombre de rol ya se encuentra registrado.',
-            'nombre_rol.in' => 'El nombre del Rol debe ser Administrador o Empleado'
+            'nombre_rol.max' => 'El nombre del rol no puede exceder los 40 caracteres.',
+            'nombre_rol.unique' => 'Este nombre de rol ya se encuentra registrado en el sistema.'
         ];
     }
 }

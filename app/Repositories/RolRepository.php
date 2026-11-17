@@ -12,9 +12,9 @@ class RolRepository extends BaseRepository implements RolInterface
         parent::__construct($rol);
     }
 
-    public function findByRol(int $rol)
+    public function findByRol(int $idRol)
     {
-        return $this->model->where("rol", $rol)->get();
+        return $this->model->where("id_rol", $idRol)->first();
     }
 
     public function findByNameRol(string $nombreRol)

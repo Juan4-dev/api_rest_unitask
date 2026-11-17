@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Services;
-use App\Repositories\AsistenciaRepository;
+
+use App\Interfaces\AsistenciaInterface;
+use Carbon\Carbon;
 
 class AsistenciaService
 {
-    protected AsistenciaRepository $asistenciaRepository;
+    protected AsistenciaInterface $asistenciaRepository;
 
-    public function __construct(AsistenciaRepository $asistenciaRepository)
+    public function __construct(AsistenciaInterface $asistenciaRepository)
     {
         $this->asistenciaRepository = $asistenciaRepository;    
     }
@@ -47,7 +49,7 @@ class AsistenciaService
         return $this->asistenciaRepository->findByDateRange($fechaInicio, $fechaFin);
     }
 
-    public function findByIdentity(string $numeroIdentificacion)
+    public function findByIdentity(int $numeroIdentificacion)
     {
         return $this->asistenciaRepository->findByIdentity($numeroIdentificacion);
     }
@@ -62,8 +64,9 @@ class AsistenciaService
         return $this->asistenciaRepository->registerEntry($asistencia);
     }
 
-    public function registerExit(int $asistencia)
+    public function registerExit(int $idAsistencia)
     {
-        return $this->asistenciaRepository->registerExit($asistencia);
+        $horaSalida = Carbon::now()->format('H:i:s');
+        return $this->asistenciaRepository->registerExit($idAsistencia, $horaSalida);
     }
 }

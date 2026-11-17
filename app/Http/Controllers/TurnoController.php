@@ -31,7 +31,7 @@ class TurnoController extends Controller
         ], 201);
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         $registro = $this->turnoService->getById($id);
 
@@ -47,7 +47,7 @@ class TurnoController extends Controller
         ], 200);
     }
 
-    public function update(TurnoRequest $request, $id)
+    public function update(TurnoRequest $request, int $id)
     {
         $registroActualizado = $this->turnoService->update($id, $request->validated());
 
@@ -63,7 +63,7 @@ class TurnoController extends Controller
         ], 200);
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $validar = $this->turnoService->delete($id);
 
@@ -122,6 +122,70 @@ class TurnoController extends Controller
 
         return response()->json([
             'message' => 'Turnos con horas extras encontrados exitosamente',
+            'data' => $registros
+        ], 200);
+    }
+
+    public function findByHorario(int $idHorario)
+    {
+        $registros = $this->turnoService->findByHorario($idHorario);
+
+        if ($registros->isEmpty()) {
+            return response()->json([
+                'message' => 'No se encontraron turnos para ese horario'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Turnos encontrados por horario exitosamente',
+            'data' => $registros
+        ], 200);
+    }
+
+    public function findByNombre(string $nombreTurno)
+    {
+        $registros = $this->turnoService->findByNombre($nombreTurno);
+
+        if ($registros->isEmpty()) {
+            return response()->json([
+                'message' => 'No se encontraron turnos con ese nombre'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Turnos encontrados por nombre exitosamente',
+            'data' => $registros
+        ], 200);
+    }
+
+    public function findByJornada(string $jornada)
+    {
+        $registros = $this->turnoService->findByJornada($jornada);
+
+        if ($registros->isEmpty()) {
+            return response()->json([
+                'message' => 'No se encontraron turnos para esa jornada'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Turnos encontrados por jornada exitosamente',
+            'data' => $registros
+        ], 200);
+    }
+
+    public function findByEmpleado(int $numeroIdentificacion)
+    {
+        $registros = $this->turnoService->findByEmpleado($numeroIdentificacion);
+
+        if ($registros->isEmpty()) {
+            return response()->json([
+                'message' => 'No se encontraron turnos para ese empleado'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Turnos encontrados por empleado exitosamente',
             'data' => $registros
         ], 200);
     }

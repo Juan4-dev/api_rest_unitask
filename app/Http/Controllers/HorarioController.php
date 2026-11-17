@@ -1,80 +1,87 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
-use App\Services\HorarioService;
-use App\Http\Requests\HorarioRequest;
+use App\Interfaces\UsuarioInterface;
+use Illuminate\Support\Facades\Hash;
 
-class HorarioController extends Controller
+class UsuarioService
 {
-    public function __construct(private HorarioService $horarioService)
+    public function __construct(protected UsuarioInterface $usuarioRepository)
     {
     }
 
-    public function index()
+    public function getAll()
     {
-        $registros = $this->horarioService->getAllHorarios();
-
-        return response()->json([
-            'message' => 'Se listaron los horarios correctamente',
-            'data' => $registros
-        ], 200);
+        return $this->usuarioRepository->getAll();
     }
 
-    public function store(HorarioRequest $request)
+    // Cambiamos $id por $numeroIdentificacion para reflejar la PK real de la tabla
+    public function getById(int $numeroIdentificacion)
     {
-        $registroHorario = $this->horarioService->createHorario($request->validated());
-        
-        return response()->json([
-            'message' => 'El horario se creó correctamente',
-            'datosRegistrados' => $registroHorario
-        ], 201);
+        return $this->usuarioRepository->getById($numeroIdentificacion);
     }
 
-    public function show(string $id)
+    public function create(array $data)
     {
-        $registro = $this->horarioService->getHorarioById((int) $id);
-
-        if (!$registro) {
-            return response()->json([
-                'message' => 'No se encontró el horario con ese id'
-            ], 404);
+        if (isset($data['contraseña'])) {
+            $data['contraseña'] = Hash::make($data['contraseña']);
         }
 
-        return response()->json([
-            'message' => 'Se listó el horario correctamente',
-            'data' => $registro
-        ], 200);
+        return $this->usuarioRepository->create($data);
     }
 
-    public function update(HorarioRequest $request, string $id)
+    public function update(int $numeroIdentificacion, array $data)
     {
-        $registroActualizado = $this->horarioService->updateHorario((int) $id, $request->validated());
-
-        if (!$registroActualizado) {
-            return response()->json([
-                'message' => 'No se encontró el horario con ese id'
-            ], 404);
+        if (isset($data['contraseña'])) {
+            $data['contraseña'] = Hash::make($data['contraseña']);
         }
 
-        return response()->json([
-            'message' => 'Se actualizó el horario correctamente',
-            'data' => $registroActualizado
-        ], 200);
+        return $this->usuarioRepository->update($numeroIdentificacion, $data);
     }
 
-    public function destroy(string $id)
+    public function delete(int $numeroIdentificacion)
     {
-        $validar = $this->horarioService->deleteHorario((int) $id);
-        
-        if (!$validar) {
-            return response()->json([
-                'message' => 'No se encontró el horario con ese id'
-            ], 404);
-        }
+        return $this->usuarioRepository->delete($numeroIdentificacion);
+    }
 
-        return response()->json([
-            'message' => 'Se eliminó el horario correctamente',
-        ], 200);
+    public function findByNombreEmpleado(string $nombreEmpleado)
+    {
+        return $this->usuarioRepository->findByNombreEmpleado($nombreEmpleado);
+    }
+
+    public function findByNumeroIdentificacion(int $numeroIdentificacion)
+    {
+        return $this->usuarioRepository->findByNumeroIdentificacion($numeroIdentificacion);
+    }
+
+    public function findByApellidoEmpleado(string $apellidoEmpleado)
+    {
+        return $this->usuarioRepository->findByApellidoEmpleado($apellidoEmpleado);
+    }
+
+    public function findByTelefonoEmpleado(string $telefonoEmpleado)
+    {
+        return $this->usuarioRepository->findByTelefonoEmpleado($telefonoEmpleado);
+    }
+
+    public function findByCorreoEmpleado(string $correoEmpleado)
+    {
+        return $this->usuarioRepository->findByCorreoEmpleado($correoEmpleado);
+    }
+
+    public function findByUsuario(string $usuario)
+    {
+        return $this->usuarioRepository->findByUsuario($usuario);
+    }
+
+    public function assignRole(int $numeroIdentificacion, int $idRol)
+    {
+        return $this->usuarioRepository->assignRole($numeroIdentificacion, $idRol);
+    }
+
+    public function verifyCredentials(string $usuario, string $contraseña)
+    {
+        return $this->usuarioRepository->verifyCredentials($usuario, $contraseña);
     }
 }

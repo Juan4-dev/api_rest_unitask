@@ -10,6 +10,7 @@ class RolController extends Controller
     public function __construct(private RolService $rolService)
     {
     }
+
     public function index()
     {
         $registros = $this->rolService->getAll();
@@ -30,7 +31,7 @@ class RolController extends Controller
         ], 201);
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         $registro = $this->rolService->getById($id);
 
@@ -46,7 +47,7 @@ class RolController extends Controller
         ], 200);
     }
 
-    public function update(RolRequest $request, $id)
+    public function update(RolRequest $request, int $id)
     {
         $registroActualizado = $this->rolService->update($id, $request->validated());
 
@@ -62,7 +63,7 @@ class RolController extends Controller
         ], 200);
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $validar = $this->rolService->delete($id);
 

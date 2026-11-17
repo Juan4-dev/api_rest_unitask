@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Services\VehiculoService;
 use App\Http\Requests\VehiculoRequest;
 
@@ -11,7 +12,6 @@ class VehiculoController extends Controller
     {
     }
 
-    // Traer todos los registros
     public function index()
     {
         $registros = $this->vehiculoService->getAll();
@@ -22,21 +22,19 @@ class VehiculoController extends Controller
         ], 200);
     }
 
-    // Crear un registro
     public function store(VehiculoRequest $request)
     {
         $registroVehiculo = $this->vehiculoService->create($request->validated());
 
         return response()->json([
-            'message' => 'El vehículo se creó correctamente',
+            'message' => 'El vehículo se registró correctamente',
             'datosRegistrados' => $registroVehiculo
         ], 201);
     }
 
-    // Traer un registro por placa
     public function show(string $placa)
     {
-        $registro = $this->vehiculoService->findByPlaca($placa);
+        $registro = $this->vehiculoService->getById($placa);
 
         if (!$registro) {
             return response()->json([
@@ -45,12 +43,11 @@ class VehiculoController extends Controller
         }
 
         return response()->json([
-            'message' => 'Se listó el registro correctamente',
+            'message' => 'Se listó el vehículo correctamente',
             'data' => $registro
         ], 200);
     }
 
-    // Actualizar un registro
     public function update(VehiculoRequest $request, string $placa)
     {
         $registroActualizado = $this->vehiculoService->update($placa, $request->validated());
@@ -62,12 +59,11 @@ class VehiculoController extends Controller
         }
 
         return response()->json([
-            'message' => 'Se actualizó el registro correctamente',
+            'message' => 'Se actualizó el vehículo correctamente',
             'data' => $registroActualizado
         ], 200);
     }
 
-    // Eliminar un registro
     public function destroy(string $placa)
     {
         $validar = $this->vehiculoService->delete($placa);
@@ -79,28 +75,56 @@ class VehiculoController extends Controller
         }
 
         return response()->json([
-            'message' => 'El vehículo se eliminó correctamente',
+            'message' => 'El vehículo se eliminó correctamente'
         ], 200);
     }
 
-    // Buscar por tipo de vehículo
-    public function findByTipo(string $tipo)
+    public function findByPlaca(string $placaVehiculo)
     {
-        $registros = $this->vehiculoService->findByTipo($tipo);
+        $registro = $this->vehiculoService->findByPlaca($placaVehiculo);
+
+        if (!$registro) {
+            return response()->json([
+                'message' => 'No se encontró un vehículo con esa placa'
+            ], 404);
+        }
 
         return response()->json([
-            'message' => 'Se listó correctamente por tipo',
+            'message' => 'Vehículo encontrado por placa exitosamente',
+            'data' => $registro
+        ], 200);
+    }
+
+    public function findByTipo(Request $request)
+    {
+        $request->validate([
+            'tipo_vehiculo' => 'required|string|max:50'
+        ]);
+
+        $registros = $this->vehiculoService->findByTipo($request->input('tipo_vehiculo'));
+
+        return response()->json([
+            'message' => 'Vehículos encontrados por tipo exitosamente',
             'data' => $registros
         ], 200);
     }
 
-    // Buscar por servicio (id_labor)
+    public function findByCliente(int $cedulaCliente)
+    {
+        $registros = $this->vehiculoService->findByCliente($cedulaCliente);
+
+        return response()->json([
+            'message' => 'Vehículos encontrados por cliente exitosamente',
+            'data' => $registros
+        ], 200);
+    }
+
     public function findByServicio(int $idLabor)
     {
         $registros = $this->vehiculoService->findByServicio($idLabor);
 
         return response()->json([
-            'message' => 'Se listó correctamente por servicio',
+            'message' => 'Vehículos encontrados por servicio exitosamente',
             'data' => $registros
         ], 200);
     }

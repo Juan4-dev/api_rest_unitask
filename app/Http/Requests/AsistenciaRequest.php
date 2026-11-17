@@ -18,11 +18,11 @@ class AsistenciaRequest extends FormRequest
         return [
             'hora_entrada' => [
                 $isUpdate ? 'sometimes' : 'required',
-                'date'
+                'date_format:H:i:s'
             ],
             'hora_salida' => [
                 'nullable',
-                'date',
+                'date_format:H:i:s',
                 'after_or_equal:hora_entrada'
             ],
             'estado_validacion' => [
@@ -32,7 +32,7 @@ class AsistenciaRequest extends FormRequest
             ],
             'fecha' => [
                 $isUpdate ? 'sometimes' : 'required',
-                'date'
+                'date_format:Y-m-d'
             ],
             'numero_identificacion' => [
                 $isUpdate ? 'sometimes' : 'required',
@@ -46,9 +46,9 @@ class AsistenciaRequest extends FormRequest
     {
         return [
             'hora_entrada.required' => 'La hora de entrada es obligatoria.',
-            'hora_entrada.date' => 'La hora de entrada debe ser una fecha y hora válida.',
+            'hora_entrada.date_format' => 'La hora de entrada debe tener el formato válido HH:MM:SS.',
 
-            'hora_salida.date' => 'La hora de salida debe ser una fecha y hora válida.',
+            'hora_salida.date_format' => 'La hora de salida debe tener el formato válido HH:MM:SS.',
             'hora_salida.after_or_equal' => 'La hora de salida debe ser posterior o igual a la hora de entrada.',
 
             'estado_validacion.required' => 'El estado de validación es obligatorio.',
@@ -56,11 +56,11 @@ class AsistenciaRequest extends FormRequest
             'estado_validacion.max' => 'El estado de validación no puede exceder los 50 caracteres.',
 
             'fecha.required' => 'La fecha es obligatoria.',
-            'fecha.date' => 'La fecha debe tener un formato válido.',
+            'fecha.date_format' => 'La fecha debe tener el formato válido YYYY-MM-DD.',
 
-            'numero_identificacion.required' => 'El número de identificación es obligatorio.',
+            'numero_identificacion.required' => 'El número de identificación del empleado es obligatorio.',
             'numero_identificacion.integer' => 'El número de identificación debe ser un número entero.',
-            'numero_identificacion.exists' => 'El empleado con este número de identificación no existe.'
+            'numero_identificacion.exists' => 'El empleado seleccionado no existe en el sistema.'
         ];
     }
 }

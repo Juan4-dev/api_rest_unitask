@@ -28,9 +28,6 @@ use App\Repositories\TurnoRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         $this->app->bind(VehiculoInterface::class, VehiculoRepository::class);
@@ -43,10 +40,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AsistenciaInterface::class, AsistenciaRepository::class);
         $this->app->bind(TurnoInterface::class, TurnoRepository::class);
     }
-
-    /**
-     * Bootstrap any application services.
-     */
+    
     public function boot(): void
     {
         //

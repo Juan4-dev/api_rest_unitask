@@ -14,6 +14,8 @@ class PagoRepository extends BaseRepository implements PagoInterface
 
     public function findByCalculoEmpleado(int $numeroIdentificacion)
     {
-        return $this->model->where("numero_identificacion", $numeroIdentificacion)->get();
+        return $this->model->whereHas('servicio', function ($query) use ($numeroIdentificacion) {
+            $query->where('numero_identificacion', $numeroIdentificacion);
+        })->with(['servicio', 'rol'])->get();
     }
 }

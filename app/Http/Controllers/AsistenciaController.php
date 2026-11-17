@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 use App\Services\AsistenciaService;
 use App\Http\Requests\AsistenciaRequest;
 
@@ -10,7 +12,6 @@ class AsistenciaController extends Controller
     {
     }
 
-    // Traer todos los registros
     public function index()
     {
         $registros = $this->asistenciaService->getAll();
@@ -21,18 +22,16 @@ class AsistenciaController extends Controller
         ], 200);
     }
 
-    // Crear un registro
     public function store(AsistenciaRequest $request)
     {
         $registroAsistencia = $this->asistenciaService->create($request->validated());
-               
         return response()->json([
             'message' => 'La asistencia se creó correctamente',
             'datosRegistrados' => $registroAsistencia
         ], 201);
     }
 
-    // Traer un registro por id
+
     public function show(string $id)
     {
         $registro = $this->asistenciaService->getById($id);
@@ -49,7 +48,6 @@ class AsistenciaController extends Controller
         ], 200);
     }
 
-    // Actualizar un registro
     public function update(AsistenciaRequest $request, string $id)
     {
         $registroActualizado = $this->asistenciaService->update($id, $request->validated());
@@ -66,7 +64,6 @@ class AsistenciaController extends Controller
         ], 200);
     }
 
-    // Eliminar un registro
     public function destroy(string $id)
     {
         $validar = $this->asistenciaService->delete($id);
@@ -82,25 +79,34 @@ class AsistenciaController extends Controller
         ], 200);
     }
 
-    public function findByDate(AsistenciaRequest $request)
+    public function findByDate(Request $request)
     {
+        $request->validate([
+            'fecha' => 'required|date_format:Y-m-d'
+        ]);
+
         $data = $this->asistenciaService->findByDate($request->input('fecha'));
 
         return response()->json([
-            'message' => 'Se listo correctamente por fecha',
+            'message' => 'Se listó correctamente por fecha',
             'data' => $data
         ], 200);
     }
 
-    public function findByDateRange(AsistenciaRequest $request)
+    public function findByDateRange(Request $request)
     {
+        $request->validate([
+            'fecha_inicio' => 'required|date_format:Y-m-d',
+            'fecha_fin' => 'required|date_format:Y-m-d|after_or_equal:fecha_inicio'
+        ]);
+
         $data = $this->asistenciaService->findByDateRange(
             $request->input('fecha_inicio'), 
             $request->input('fecha_fin')
         );
 
         return response()->json([
-            'message' => 'Se listo correctamente por rango de fechas',
+            'message' => 'Se listó correctamente por rango de fechas',
             'data' => $data
         ], 200);
     }
@@ -110,7 +116,7 @@ class AsistenciaController extends Controller
         $data = $this->asistenciaService->findByIdentity($numeroIdentificacion);
 
         return response()->json([
-            'message' => 'Se listo correctamente por numero de identificacion',
+            'message' => 'Se listó correctamente por número de identificación',
             'data' => $data
         ], 200);
     }
@@ -120,14 +126,14 @@ class AsistenciaController extends Controller
         $data = $this->asistenciaService->findByStatus($estadoValidacion);
 
         return response()->json([
-            'message' => 'Se listo correctamente por estado de validacion',
+            'message' => 'Se listó correctamente por estado de validación',
             'data' => $data
         ], 200);
     }
 
-    public function registerEntry(AsistenciaRequest $register)
+    public function registerEntry(AsistenciaRequest $request)
     {
-        $registerEntry = $this->asistenciaService->registerEntry($register->validated());
+        $registerEntry = $this->asistenciaService->registerEntry($request->validated());
 
         return response()->json([
             'message' => 'Entrada registrada correctamente',
@@ -135,9 +141,15 @@ class AsistenciaController extends Controller
         ], 201);
     }
 
-    public function registerExit(AsistenciaRequest $register, int $id)
+    public function registerExit(int $id)
     {
         $data = $this->asistenciaService->registerExit($id);
+
+        if (!$data) {
+            return response()->json([
+                'message' => 'No se encontró el registro de asistencia para registrar la salida'
+            ], 404);
+        }
 
         return response()->json([
             'message' => 'Salida registrada correctamente',

@@ -20,7 +20,7 @@ class HorarioService
 
     public function getHorarioById(int $id)
     {
-        $horario = $this->horarioRepository->findById($id);
+        $horario = $this->horarioRepository->getById($id);
         
         if (!$horario) {
             return null;
@@ -44,8 +44,18 @@ class HorarioService
         return $this->horarioRepository->delete($id);
     }
 
-    public function getHorariosByType(string $tipo_horario)
+    public function getHorariosByType(string $tipoHorario)
     {
-        return $this->horarioRepository->findByHoraryType($tipo_horario);
+        return $this->horarioRepository->findByHoraryType($tipoHorario);
+    }
+
+    public function getHorariosByPeriod(string $periodo)
+    {
+        return $this->horarioRepository->findByPeriod($periodo);
+    }
+
+    public function getHorariosByIdentity(int $numeroIdentificacion)
+    {
+        return $this->horarioRepository->findByIdentity($numeroIdentificacion);
     }
 }

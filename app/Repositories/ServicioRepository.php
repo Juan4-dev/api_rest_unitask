@@ -16,28 +16,41 @@ class ServicioRepository extends BaseRepository implements ServicioInterface
     {
         return $this->model->find($id);
     }
-    public function findByName(string $nombre_servicio)
+
+    public function findByName(string $nombreServicio)
     {
-        return $this->model->where('nombre_servicio', $nombre_servicio)->get();
+        return $this->model->where('nombre_servicio', $nombreServicio)->get();
     }
 
-    public function findByTask(string $labor_servicio)
+    public function findByTask(string $laborServicio)
     {
-        return $this->model->where('labor_servicio', $labor_servicio)->get();
+        return $this->model->where('labor_servicio', $laborServicio)->get();
     }
 
     public function getServicesByPay(int $idPago)
     {
-        return $this->model->where('id_pago', $idPago)->get();
+        return $this->model->whereHas('pagos', function ($query) use ($idPago) {
+            $query->where('id_pago', $idPago);
+        })->get();
     }
 
-    public function getHoursFromJob(string $horas_labor)
+    public function getHoursFromJob(string $horasLabor)
     {
-        return $this->model->where('horas_labor', $horas_labor)->get();
+        return $this->model->where('horas_labor', $horasLabor)->get();
     }
 
-    public function getQuantityOfServices(int $cantidad_servicios)
+    public function getQuantityOfServices(int $cantidadServicios)
     {
-        return $this->model->where('cantidad_servicios', $cantidad_servicios)->get();
+        return $this->model->where('cantidad_servicios', $cantidadServicios)->get();
+    }
+
+    public function findByIdentity(int $numeroIdentificacion)
+    {
+        return $this->model->where('numero_identificacion', $numeroIdentificacion)->get();
+    }
+
+    public function findByVehiculo(string $placaVehiculo)
+    {
+        return $this->model->where('placa_vehiculo', $placaVehiculo)->get();
     }
 }

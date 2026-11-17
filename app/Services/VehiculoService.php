@@ -18,7 +18,6 @@ class VehiculoService
         return $this->vehiculoRepository->getAll();
     }
 
-    
     public function getById(int|string $id)
     {
         return $this->vehiculoRepository->getById($id);
@@ -39,7 +38,6 @@ class VehiculoService
         return $this->vehiculoRepository->delete($id);
     }
 
-    
     public function findByPlaca(string $placaVehiculo)
     {
         return $this->vehiculoRepository->findByPlaca($placaVehiculo);
@@ -48,6 +46,11 @@ class VehiculoService
     public function findByTipo(string $tipoVehiculo)
     {
         return $this->vehiculoRepository->findByTipo($tipoVehiculo);
+    }
+
+    public function findByCliente(int $cedulaCliente)
+    {
+        return $this->vehiculoRepository->findByCliente($cedulaCliente);
     }
 
     public function findByServicio(int $idLabor)

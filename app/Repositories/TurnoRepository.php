@@ -14,16 +14,38 @@ class TurnoRepository extends BaseRepository implements TurnoInterface
 
     public function findByFecha(string $diaTurno)
     {
-        return Turno::where('dia_turno', $diaTurno)->get();
+        return $this->model->where('dia_turno', $diaTurno)->get();
     }
 
     public function findByRangoFechas(string $fechaInicio, string $fechaFin)
     {
-        return Turno::whereBetween('dia_turno', [$fechaInicio, $fechaFin])->get();
+        return $this->model->whereBetween('dia_turno', [$fechaInicio, $fechaFin])->get();
     }
 
     public function findConHorasExtras()
     {
-        return Turno::where('horas_extras', '>', 0)->get();
+        return $this->model->where('horas_extras', '>', 0)->get();
+    }
+
+    public function findByHorario(int $idHorario)
+    {
+        return $this->model->where('id_horario', $idHorario)->get();
+    }
+
+    public function findByNombre(string $nombreTurno)
+    {
+        return $this->model->where('nombre_turno', $nombreTurno)->get();
+    }
+
+    public function findByJornada(string $jornada)
+    {
+        return $this->model->where('jornada', $jornada)->get();
+    }
+
+    public function findByEmpleado(int $numeroIdentificacion)
+    {
+        return $this->model->whereHas('horario', function ($query) use ($numeroIdentificacion) {
+            $query->where('numero_identificacion', $numeroIdentificacion);
+        })->get();
     }
 }

@@ -10,6 +10,7 @@ class PagoController extends Controller
     public function __construct(private PagoService $pagoService)
     {
     }
+
     public function index()
     {
         $registros = $this->pagoService->getAll();
@@ -30,7 +31,7 @@ class PagoController extends Controller
         ], 201);
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         $registro = $this->pagoService->getById($id);
 
@@ -46,7 +47,7 @@ class PagoController extends Controller
         ], 200);
     }
 
-    public function update(PagoRequest $request, $id)
+    public function update(PagoRequest $request, int $id)
     {
         $registroActualizado = $this->pagoService->update($id, $request->validated());
 
@@ -62,7 +63,7 @@ class PagoController extends Controller
         ], 200);
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $validar = $this->pagoService->delete($id);
 

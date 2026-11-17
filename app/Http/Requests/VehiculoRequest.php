@@ -2,23 +2,21 @@
 
 namespace App\Http\Requests;
 
-
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 class VehiculoRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;
     }
 
-
     public function rules(): array
     {
         $isUpdate = $this->isMethod('PUT') || $this->isMethod('PATCH');
-        $vehiculoId = $this->route('vehiculo') ?? $this->route('placa') ?? $this->route('id');
+        
+        $vehiculoId = $this->route('vehiculo') ?? $this->route('placa_vehiculo') ?? $this->route('id');
 
         return [
             'placa_vehiculo' => [
@@ -30,14 +28,9 @@ class VehiculoRequest extends FormRequest
             'tipo_vehiculo' => [
                 $isUpdate ? 'sometimes' : 'required',
                 'string',
-                'max:30'
+                'max:40'
             ],
-            'id_labor' => [
-                $isUpdate ? 'sometimes' : 'required',
-                'integer',
-                'exists:servicios,id_labor'
-            ],
-            'cedula_cliente' =>[
+            'cedula_cliente' => [
                 $isUpdate ? 'sometimes' : 'required',
                 'integer',
                 'exists:clientes,cedula_cliente'
@@ -51,19 +44,15 @@ class VehiculoRequest extends FormRequest
             'placa_vehiculo.required' => 'La placa del vehículo es obligatoria.',
             'placa_vehiculo.string' => 'La placa del vehículo debe ser texto.',
             'placa_vehiculo.max' => 'La placa del vehículo no puede exceder los 10 caracteres.',
-            'placa_vehiculo.unique' => 'Esta placa ya está registrada.',
+            'placa_vehiculo.unique' => 'Esta placa de vehículo ya se encuentra registrada en el sistema.',
 
             'tipo_vehiculo.required' => 'El tipo de vehículo es obligatorio.',
             'tipo_vehiculo.string' => 'El tipo de vehículo debe ser texto.',
-            'tipo_vehiculo.max' => 'El tipo de vehículo no puede exceder los 30 caracteres.',
-
-            'id_labor.required' => 'El servicio es obligatorio.',
-            'id_labor.integer' => 'El identificador del servicio debe ser numérico.',
-            'id_labor.exists' => 'El servicio seleccionado no existe en el sistema.',
+            'tipo_vehiculo.max' => 'El tipo de vehículo no puede exceder los 40 caracteres.',
 
             'cedula_cliente.required' => 'La cédula del cliente es obligatoria.',
-            'cedula_cliente.integer' => 'La cédula del cliente debe ser un número.',
-            'cedula_cliente.exists' => 'El cliente con esa cédula no está registrado en el sistema.'
+            'cedula_cliente.integer' => 'La cédula del cliente debe ser un número entero.',
+            'cedula_cliente.exists' => 'El cliente seleccionado no existe en el sistema.'
         ];
     }
 }

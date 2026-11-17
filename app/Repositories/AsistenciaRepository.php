@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Repositories;
-use App\Models\Asistencia;
+
 use App\Interfaces\AsistenciaInterface;
-use Carbon\Carbon;
+use App\Models\Asistencia;
 
 class AsistenciaRepository extends BaseRepository implements AsistenciaInterface
 {
@@ -14,35 +14,34 @@ class AsistenciaRepository extends BaseRepository implements AsistenciaInterface
 
     public function findByDate(string $fecha)
     {
-        return $this->model->where("fecha", $fecha)->get();
+        return $this->model->with('usuario')->where('fecha', $fecha)->get();
     }
 
     public function findByDateRange(string $fechaInicio, string $fechaFin)
     {
-        return $this->model->whereBetween("fecha", [$fechaInicio, $fechaFin])->get();
+        return $this->model->with('usuario')->whereBetween('fecha', [$fechaInicio, $fechaFin])->get();
     }
 
-    public function findByIdentity(string $numeroIdentificacion)
+    public function findByIdentity(int $numeroIdentificacion)
     {
-        return $this->model->where("numero_identificacion", $numeroIdentificacion)->get();
+        return $this->model->with('usuario')->where('numero_identificacion', $numeroIdentificacion)->get();
     }
 
     public function findByStatus(string $estadoValidacion)
     {
-        return $this->model->where("estado_validacion", $estadoValidacion)->get();
+        return $this->model->with('usuario')->where('estado_validacion', $estadoValidacion)->get();
     }
 
     public function registerEntry(array $asistencia)
     {
         return $this->model->create($asistencia);
     }
-    
-    public function registerExit(int $asistencia, string $horaSalida)
+
+    public function registerExit(int $idAsistencia, string $horaSalida)
     {
-        $registroAsistencia = $this->model->find($asistencia);
-        if ($registroAsistencia) 
-        {
-            $registroAsistencia->update(["hora_salida" => $horaSalida]);
+        $registroAsistencia = $this->model->find($idAsistencia);
+        if ($registroAsistencia) {
+            $registroAsistencia->update(['hora_salida' => $horaSalida]);
             return $registroAsistencia;
         }
         return null;

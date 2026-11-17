@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Interfaces\UsuarioInterface;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioService
 {
@@ -12,26 +13,33 @@ class UsuarioService
 
     public function getAll()
     {
-        return $this->usuarioRepository->getAll(); // Cambiado de all() a getAll()
+        return $this->usuarioRepository->getAll();
     }
 
-    public function getById($id)
+    public function getById(int $id)
     {
-        return $this->usuarioRepository->getById($id); // Cambiado de find() a getById() según el BaseRepository
+        return $this->usuarioRepository->getById($id);
     }
 
     public function create(array $data)
     {
-        // Opcional: Aquí puedes aplicar Hash::make($data['contraseña']) si no lo haces en el modelo
+        if (isset($data['contraseña'])) {
+            $data['contraseña'] = Hash::make($data['contraseña']);
+        }
+
         return $this->usuarioRepository->create($data);
     }
 
-    public function update($id, array $data)
+    public function update(int $id, array $data)
     {
+        if (isset($data['contraseña'])) {
+            $data['contraseña'] = Hash::make($data['contraseña']);
+        }
+
         return $this->usuarioRepository->update($id, $data);
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
         return $this->usuarioRepository->delete($id);
     }
@@ -54,6 +62,11 @@ class UsuarioService
     public function findByTelefonoEmpleado(string $telefonoEmpleado)
     {
         return $this->usuarioRepository->findByTelefonoEmpleado($telefonoEmpleado);
+    }
+
+    public function findByCorreoEmpleado(string $correoEmpleado)
+    {
+        return $this->usuarioRepository->findByCorreoEmpleado($correoEmpleado);
     }
 
     public function findByUsuario(string $usuario)

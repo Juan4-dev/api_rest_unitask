@@ -6,9 +6,8 @@ use App\Interfaces\ServicioInterface;
 
 class ServicioService
 {
-    protected $servicioRepository;
+    protected ServicioInterface $servicioRepository;
 
-    // Inyectamos la interfaz del repositorio de servicios
     public function __construct(ServicioInterface $servicioRepository)
     {
         $this->servicioRepository = $servicioRepository;
@@ -21,7 +20,7 @@ class ServicioService
 
     public function getServicioById(int $id)
     {
-        $servicio = $this->servicioRepository->find($id);
+        $servicio = $this->servicioRepository->getById($id);
 
         if (!$servicio) {
             return null;
@@ -45,16 +44,14 @@ class ServicioService
         return $this->servicioRepository->delete($id);
     }
 
-    
-
-    public function getServiciosByName(string $nombre_servicio)
+    public function getServiciosByName(string $nombreServicio)
     {
-        return $this->servicioRepository->findByName($nombre_servicio);
+        return $this->servicioRepository->findByName($nombreServicio);
     }
 
-    public function getServiciosByTask(string $labor_servicio)
+    public function getServiciosByTask(string $laborServicio)
     {
-        return $this->servicioRepository->findByTask($labor_servicio);
+        return $this->servicioRepository->findByTask($laborServicio);
     }
 
     public function getServiciosByPay(int $idPago)
@@ -62,13 +59,23 @@ class ServicioService
         return $this->servicioRepository->getServicesByPay($idPago);
     }
 
-    public function getServiciosByHours(string $horas_labor)
+    public function getServiciosByHours(string $horasLabor)
     {
-        return $this->servicioRepository->getHoursFromJob($horas_labor);
+        return $this->servicioRepository->getHoursFromJob($horasLabor);
     }
 
-    public function getServiciosByQuantity(int $cantidad_servicios)
+    public function getServiciosByQuantity(int $cantidadServicios)
     {
-        return $this->servicioRepository->getQuantityOfServices($cantidad_servicios);
+        return $this->servicioRepository->getQuantityOfServices($cantidadServicios);
+    }
+
+    public function getServiciosByIdentity(int $numeroIdentificacion)
+    {
+        return $this->servicioRepository->findByIdentity($numeroIdentificacion);
+    }
+
+    public function getServiciosByVehiculo(string $placaVehiculo)
+    {
+        return $this->servicioRepository->findByVehiculo($placaVehiculo);
     }
 }

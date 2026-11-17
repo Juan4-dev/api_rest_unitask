@@ -29,6 +29,8 @@ class ClienteRepository extends BaseRepository implements ClienteInterface
 
     public function findByVehiculo(string $placaVehiculo)
     {
-        return $this->model->where("placa_vehiculo", $placaVehiculo)->get();
+        return $this->model->whereHas('vehiculos', function ($query) use ($placaVehiculo) {
+            $query->where('placa_vehiculo', $placaVehiculo);
+        })->first();
     }
 }

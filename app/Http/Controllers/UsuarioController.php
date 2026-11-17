@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Services\UsuarioService;
 use App\Http\Requests\UsuarioRequest;
-use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
@@ -26,21 +26,19 @@ class UsuarioController extends Controller
     {
         $registroUsuario = $this->usuarioService->create($request->validated());
 
-        $registroUsuario->load('rol');
-
         return response()->json([
             'message' => 'El usuario se registró correctamente',
             'datosRegistrados' => $registroUsuario
         ], 201);
     }
 
-    public function show($id)
+    public function show(int $numeroIdentificacion)
     {
-        $registro = $this->usuarioService->getById($id);
+        $registro = $this->usuarioService->getById($numeroIdentificacion);
 
         if (!$registro) {
             return response()->json([
-                'message' => 'No se encontró el usuario con ese identificador'
+                'message' => 'No se encontró el usuario con ese número de identificación'
             ], 404);
         }
 
@@ -50,13 +48,13 @@ class UsuarioController extends Controller
         ], 200);
     }
 
-    public function update(UsuarioRequest $request, $id)
+    public function update(UsuarioRequest $request, int $numeroIdentificacion)
     {
-        $registroActualizado = $this->usuarioService->update($id, $request->validated());
+        $registroActualizado = $this->usuarioService->update($numeroIdentificacion, $request->validated());
 
         if (!$registroActualizado) {
             return response()->json([
-                'message' => 'No se encontró el usuario con ese identificador'
+                'message' => 'No se encontró el usuario con ese número de identificación'
             ], 404);
         }
 
@@ -66,13 +64,13 @@ class UsuarioController extends Controller
         ], 200);
     }
 
-    public function destroy($id)
+    public function destroy(int $numeroIdentificacion)
     {
-        $validar = $this->usuarioService->delete($id);
+        $validar = $this->usuarioService->delete($numeroIdentificacion);
 
         if (!$validar) {
             return response()->json([
-                'message' => 'No se encontró el usuario con ese identificador'
+                'message' => 'No se encontró el usuario con ese número de identificación'
             ], 404);
         }
 
@@ -81,18 +79,16 @@ class UsuarioController extends Controller
         ], 200);
     }
 
-    public function findByNombreEmpleado(string $nombreEmpleado)
+    public function findByNombreEmpleado(Request $request)
     {
-        $registros = $this->usuarioService->findByNombreEmpleado($nombreEmpleado);
+        $request->validate([
+            'nombre_empleado' => 'required|string|max:50'
+        ]);
 
-        if ($registros->isEmpty()) {
-            return response()->json([
-                'message' => 'No se encontraron empleados con ese nombre'
-            ], 404);
-        }
+        $registros = $this->usuarioService->findByNombreEmpleado($request->input('nombre_empleado'));
 
         return response()->json([
-            'message' => 'Empleados encontrados exitosamente',
+            'message' => 'Usuarios encontrados por nombre exitosamente',
             'data' => $registros
         ], 200);
     }
@@ -108,43 +104,78 @@ class UsuarioController extends Controller
         }
 
         return response()->json([
-            'message' => 'Usuario encontrado exitosamente',
+            'message' => 'Usuario encontrado por número de identificación exitosamente',
             'data' => $registro
         ], 200);
     }
 
-    public function findByUsuario(string $usuario)
+    public function findByApellidoEmpleado(Request $request)
     {
-        $registro = $this->usuarioService->findByUsuario($usuario);
+        $request->validate([
+            'apellido_empleado' => 'required|string|max:50'
+        ]);
 
-        if (!$registro) {
-            return response()->json([
-                'message' => 'No se encontró el nombre de usuario especificado'
-            ], 404);
-        }
+        $registros = $this->usuarioService->findByApellidoEmpleado($request->input('apellido_empleado'));
 
         return response()->json([
-            'message' => 'Usuario encontrado exitosamente',
-            'data' => $registro
+            'message' => 'Usuarios encontrados por apellido exitosamente',
+            'data' => $registros
         ], 200);
     }
 
-    public function assignRole(Request $request, int $id)
+    public function findByTelefonoEmpleado(Request $request)
+    {
+        $request->validate([
+            'telefono_empleado' => 'required|string|max:20'
+        ]);
+
+        $registros = $this->usuarioService->findByTelefonoEmpleado($request->input('telefono_empleado'));
+
+        return response()->json([
+            'message' => 'Usuarios encontrados por teléfono exitosamente',
+            'data' => $registros
+        ], 200);
+    }
+
+    public function findByCorreoEmpleado(Request $request)
+    {
+        $request->validate([
+            'correo_empleado' => 'required|email|max:100'
+        ]);
+
+        $registros = $this->usuarioService->findByCorreoEmpleado($request->input('correo_empleado'));
+
+        return response()->json([
+            'message' => 'Usuarios encontrados por correo exitosamente',
+            'data' => $registros
+        ], 200);
+    }
+
+    public function findByUsuario(Request $request)
+    {
+        $request->validate([
+            'usuario' => 'required|string|max:50'
+        ]);
+
+        $registros = $this->usuarioService->findByUsuario($request->input('usuario'));
+
+        return response()->json([
+            'message' => 'Usuarios encontrados por nombre de usuario exitosamente',
+            'data' => $registros
+        ], 200);
+    }
+
+    public function assignRole(Request $request, int $numeroIdentificacion)
     {
         $request->validate([
             'id_rol' => 'required|integer|exists:roles,id_rol'
         ]);
 
-        $actualizado = $this->usuarioService->assignRole($id, $request->id_rol);
-
-        if (!$actualizado) {
-            return response()->json([
-                'message' => 'No se pudo actualizar el rol o el usuario no existe'
-            ], 404);
-        }
+        $resultado = $this->usuarioService->assignRole($numeroIdentificacion, $request->input('id_rol'));
 
         return response()->json([
-            'message' => 'Rol asignado correctamente al usuario'
+            'message' => 'Rol asignado correctamente al usuario',
+            'data' => $resultado
         ], 200);
     }
 
@@ -155,9 +186,12 @@ class UsuarioController extends Controller
             'contraseña' => 'required|string'
         ]);
 
-        $user = $this->usuarioService->verifyCredentials($request->usuario, $request->contraseña);
+        $resultado = $this->usuarioService->verifyCredentials(
+            $request->input('usuario'),
+            $request->input('contraseña')
+        );
 
-        if (!$user) {
+        if (!$resultado) {
             return response()->json([
                 'message' => 'Credenciales inválidas'
             ], 401);
@@ -165,7 +199,7 @@ class UsuarioController extends Controller
 
         return response()->json([
             'message' => 'Credenciales verificadas exitosamente',
-            'data' => $user
+            'data' => $resultado
         ], 200);
     }
 }

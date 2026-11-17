@@ -2,12 +2,15 @@
 
 namespace App\Services;
 
-use App\Repositories\RolRepository;
+use App\Interfaces\RolInterface;
 
 class RolService
 {
-    public function __construct(protected RolRepository $rolRepository)
+    protected RolInterface $rolRepository;
+
+    public function __construct(RolInterface $rolRepository)
     {
+        $this->rolRepository = $rolRepository;
     }
 
     public function getAll()
@@ -15,7 +18,7 @@ class RolService
         return $this->rolRepository->getAll();
     }
 
-    public function getById($id)
+    public function getById(int $id)
     {
         return $this->rolRepository->getById($id);
     }
@@ -25,19 +28,19 @@ class RolService
         return $this->rolRepository->create($data);
     }
 
-    public function update($id, array $data)
+    public function update(int $id, array $data)
     {
         return $this->rolRepository->update($id, $data);
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
         return $this->rolRepository->delete($id);
     }
 
-    public function findByRol(int $rol)
+    public function findByRol(int $idRol)
     {
-        return $this->usuarioRepository->findByRol($rol);
+        return $this->rolRepository->findByRol($idRol);
     }
 
     public function findByNameRol(string $nombreRol)

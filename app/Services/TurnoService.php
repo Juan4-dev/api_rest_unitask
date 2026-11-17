@@ -12,12 +12,12 @@ class TurnoService
 
     public function getAll()
     {
-        return $this->turnoRepository->getAll(); // Corregido de all() a getAll()
+        return $this->turnoRepository->getAll();
     }
 
-    public function getById($id)
+    public function getById(int $id)
     {
-        return $this->turnoRepository->getById($id); // Corregido de find() a getById()
+        return $this->turnoRepository->getById($id);
     }
 
     public function create(array $data)
@@ -25,12 +25,12 @@ class TurnoService
         return $this->turnoRepository->create($data);
     }
 
-    public function update($id, array $data)
+    public function update(int $id, array $data)
     {
         return $this->turnoRepository->update($id, $data);
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
         return $this->turnoRepository->delete($id);
     }
@@ -48,5 +48,25 @@ class TurnoService
     public function findConHorasExtras()
     {
         return $this->turnoRepository->findConHorasExtras();
+    }
+
+    public function findByHorario(int $idHorario)
+    {
+        return $this->turnoRepository->findByHorario($idHorario);
+    }
+
+    public function findByNombre(string $nombreTurno)
+    {
+        return $this->turnoRepository->findByNombre($nombreTurno);
+    }
+
+    public function findByJornada(string $jornada)
+    {
+        return $this->turnoRepository->findByJornada($jornada);
+    }
+
+    public function findByEmpleado(int $numeroIdentificacion)
+    {
+        return $this->turnoRepository->findByEmpleado($numeroIdentificacion);
     }
 }
