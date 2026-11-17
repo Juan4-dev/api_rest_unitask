@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('nombre_cliente', 100);
             $table->string('apellido_cliente', 100);
             $table->string('correo_cliente', 150)->unique();
+            $table->string('telefono_cliente');
             $table->timestamps();
             $table->softDeletes();
 
