@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\AsistenciaService;
 use App\Http\Requests\AsistenciaRequest;
+use App\Http\Controller\Concerns\AuthorizesWithPermissions;
+use Illuminate\Routing\Controller\hasMiddleware;
 
 class AsistenciaController extends Controller
 {
+    use AuthorizesWithPermissions;
+
     public function __construct(private AsistenciaService $asistenciaService)
     {
     }
