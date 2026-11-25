@@ -10,8 +10,15 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\TurnoController;
+use App\Http\Controllers\AuthController;
 
 Route::prefix('v1')->group(function () {
+    Route::post('/login', [AuthController::class, 'login']);
+
+    Route::middleware('auth:api')->group(function () {
+        Route::get('/me', [AuthController::class, 'me']);
+        Route::post('/logout', [AuthController::class, 'logout']);
+    });
 
     // Usuario
     Route::get('usuario/buscar/nombre/{nombre_empleado}', [UsuarioController::class, 'findByNombreEmpleado']);
@@ -86,5 +93,4 @@ Route::prefix('v1')->group(function () {
     Route::get('turno/buscar/empleado/{numeroIdentificacion}', [TurnoController::class, 'findByEmpleado']);
 
     Route::apiResource('turno', TurnoController::class);
-
 });
